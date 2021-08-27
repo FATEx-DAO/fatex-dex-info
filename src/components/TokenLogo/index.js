@@ -14,9 +14,8 @@ const Inline = styled.div`
 const Image = styled.img`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
-  background-color: white;
+  background-color: ${({ theme }) => theme.text1};
   border-radius: 50%;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
 `
 
 const StyledEthereumLogo = styled.div`

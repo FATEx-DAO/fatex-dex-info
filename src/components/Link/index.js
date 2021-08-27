@@ -9,7 +9,6 @@ const WrappedLink = ({ external, children, ...rest }) => (
   <RebassLink
     target={external ? '_blank' : null}
     rel={external ? 'noopener noreferrer' : null}
-    color="#2f80ed"
     {...rest}
   >
     {children}
@@ -46,7 +45,7 @@ export const CustomLink = styled(RouterLink)`
 
 export const BasicLink = styled(RouterLink)`
   text-decoration: none;
-  color: inherit;
+  color: ${({ theme }) => theme.text1};
   &:hover {
     cursor: pointer;
     text-decoration: none;

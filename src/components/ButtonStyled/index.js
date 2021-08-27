@@ -10,7 +10,7 @@ const Base = styled(RebassButton)`
   padding: 8px 12px;
   font-size: 0.825rem;
   font-weight: 600;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   outline: none;
   border: 1px solid transparent;
@@ -23,7 +23,7 @@ const BaseCustom = styled(RebassButton)`
   padding: 16px 12px;
   font-size: 0.825rem;
   font-weight: 400;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   outline: none;
 `
@@ -40,7 +40,6 @@ const Dull = styled(Base)`
     border-color: rgba(255, 255, 255, 0.25);
   }
   &:focus {
-    box-shadow: 0 0 0 1pt rgba(255, 255, 255, 0.25);
   }
   &:active {
     background-color: rgba(255, 255, 255, 0.25);
@@ -60,28 +59,52 @@ const ContentWrapper = styled.div`
 `
 
 export const ButtonLight = styled(Base)`
-  background-color: ${({ color, theme }) => (color ? transparentize(0.9, color) : transparentize(0.9, theme.primary1))};
-  color: ${({ color, theme }) => (color ? darken(0.1, color) : theme.primary1)};
+  background-color: ${({ color, theme }) => (color ? transparentize(0.9, color) : theme.bg1)};
+  color: ${({ color, theme }) => (color ? darken(0.1, color) : theme.text1)};
+  border: 3px solid ${({ theme }) => theme.text1};
+  padding: 17px 20px;
+  font-size: 14px;
+  font-weight: 500;
 
   min-width: fit-content;
-  border-radius: 12px;
+  border-radius: 8px;
   white-space: nowrap;
 
   a {
-    color: ${({ color, theme }) => (color ? darken(0.1, color) : theme.primary1)};
+    color: ${({ color, theme }) => (color ? darken(0.1, color) : theme.text1)};
   }
 
   :hover {
-    background-color: ${({ color, theme }) =>
-      color ? transparentize(0.8, color) : transparentize(0.8, theme.primary1)};
+    background-color: ${({ color, theme }) => (color ? transparentize(0.9, color) : theme.bg6)};
+    color: ${({ color, theme }) => (color ? darken(0.1, color) : theme.text6)};
+    border: 3px solid ${({ theme }) => theme.text1};
+  }
+
+  @media screen and (max-width: 650px) {
+    font-size: 12px;
+    padding: 17px 15px;
+    margin-right: 25px;
+  }
+`
+
+const ButtonDropdownContent = styled.div`
+  color: ${({ theme }) => theme.text1};
+
+  :hover {
+    color: ${({ theme }) => theme.text6};
+
+    > div,
+    > div > div {
+      color: ${({ theme }) => theme.text6};
+    }
   }
 `
 
 export function ButtonDropdown({ disabled = false, children, open, ...rest }) {
   return (
-    <ButtonFaded {...rest} disabled={disabled} ope={open}>
+    <ButtonFaded {...rest} disabled={disabled} open={open}>
       <RowBetween>
-        <div style={{ display: 'flex', alignItems: 'center' }}>{children}</div>
+        <ButtonDropdownContent style={{ display: 'flex', alignItems: 'center' }}>{children}</ButtonDropdownContent>
         {open ? (
           <StyledIcon>
             <ChevronUp size={24} />
@@ -97,24 +120,32 @@ export function ButtonDropdown({ disabled = false, children, open, ...rest }) {
 }
 
 export const ButtonDark = styled(Base)`
-  background-color: ${({ color, theme }) => (color ? color : theme.primary1)};
-  color: white;
+  background-color: ${({ color, theme }) => (color ? color : theme.bg2)};
+  color: ${({ theme }) => theme.text1};
   width: fit-content;
-  border-radius: 12px;
+  border-radius: 8px;
   white-space: nowrap;
 
   :hover {
-    background-color: ${({ color, theme }) => (color ? darken(0.1, color) : darken(0.1, theme.primary1))};
+    background-color: ${({ color, theme }) => (color ? darken(0.1, color) : darken(0.1, theme.bg6))};
   }
 `
 
 export const ButtonFaded = styled(Base)`
-  background-color: ${({ theme }) => theme.bg2};
-  color: (255, 255, 255, 0.5);
+  background-color: ${({ theme, open }) => (open ? theme.bg6 : theme.bg1)};
+  color: ${({ theme, open }) => (open ? theme.text6 : theme.text1)};
+  border: 3px solid ${({ theme }) => theme.text1};
   white-space: nowrap;
+  > div > div > div > div {
+    ${({ theme, open }) => open && `color: ${theme.text6};`}
+  }
 
   :hover {
-    opacity: 0.5;
+    background-color: ${({ theme }) => theme.bg6};
+    color: ${({ theme }) => theme.text6};
+    > div {
+      color: ${({ theme }) => theme.text6};
+    }
   }
 `
 
@@ -138,14 +169,19 @@ export function ButtonCustom({ children, bgColor, color, ...rest }) {
 }
 
 export const OptionButton = styled.div`
-  font-weight: 500;
+  font-weight: ${({ active, darkMode }) => (active || !darkMode ? '600' : '500')};
   width: fit-content;
   white-space: nowrap;
   padding: 6px;
   border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.bg4};
-  background-color: ${({ active, theme }) => active && theme.bg3};
-  color: ${({ theme }) => theme.text1};
+  border: 2px solid ${({ theme }) => theme.bg6};
+  background-color: ${({ active, theme }) => active && theme.bg6};
+  color: ${({ theme, active }) => (active ? theme.text6 : theme.text1)};
+
+  > div {
+    color: ${({ theme, active }) => (active ? theme.text6 : theme.text1)};
+    font-weight: ${({ active, darkMode }) => (active || !darkMode ? '600' : '500')};
+  }
 
   :hover {
     cursor: ${({ disabled }) => !disabled && 'pointer'};

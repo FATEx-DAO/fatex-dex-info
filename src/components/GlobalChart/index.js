@@ -9,6 +9,7 @@ import { RowFixed } from '../Row'
 import { OptionButton } from '../ButtonStyled'
 import { getTimeframe } from '../../utils'
 import { TYPE } from '../../Theme'
+import { useDarkModeManager } from '../../contexts/LocalStorage'
 
 const CHART_VIEW = {
   VOLUME: 'Volume',
@@ -22,6 +23,8 @@ const VOLUME_WINDOW = {
 const GlobalChart = ({ display }) => {
   // chart options
   const [chartView, setChartView] = useState(display === 'volume' ? CHART_VIEW.VOLUME : CHART_VIEW.LIQUIDITY)
+
+  const [darkMode] = useDarkModeManager()
 
   // time window and window size for chart
   const timeWindow = timeframeOptions.ALL_TIME
@@ -121,6 +124,7 @@ const GlobalChart = ({ display }) => {
           <OptionButton
             active={volumeWindow === VOLUME_WINDOW.DAYS}
             onClick={() => setVolumeWindow(VOLUME_WINDOW.DAYS)}
+            darkMode={darkMode}
           >
             <TYPE.body>D</TYPE.body>
           </OptionButton>

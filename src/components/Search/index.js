@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 import Row, { RowFixed } from '../Row'
 import TokenLogo from '../TokenLogo'
@@ -19,11 +19,14 @@ import { PAIR_SEARCH, TOKEN_SEARCH } from '../../apollo/queries'
 import FormattedName from '../FormattedName'
 import { TYPE } from '../../Theme'
 import { updateNameData } from '../../utils/data'
+import theme from '../../Theme'
 
 const Container = styled.div`
   height: 48px;
   z-index: 30;
   position: relative;
+  background: ${({ theme }) => theme.bg6};
+  border-radius: 8px;
 
   @media screen and (max-width: 600px) {
     width: 100%;
@@ -36,25 +39,20 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: ${({ theme, small, open }) => (small ? (open ? theme.bg6 : 'none') : transparentize(0.4, theme.bg6))};
-  border-bottom-right-radius: ${({ open }) => (open ? '0px' : '12px')};
-  border-bottom-left-radius: ${({ open }) => (open ? '0px' : '12px')};
+  padding: 16px 30px;
+  border-radius: 8px;
+  background: ${({ theme, small, open }) => (small ? (open ? theme.bg6 : 'none') : theme.bg6)};
+  border-bottom-right-radius: ${({ open }) => (open ? '0px' : '8px')};
+  border-bottom-left-radius: ${({ open }) => (open ? '0px' : '8px')};
   z-index: 9999;
   width: 100%;
   min-width: 300px;
   box-sizing: border-box;
-  box-shadow: ${({ open, small }) =>
-    !open && !small
-      ? '0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04) '
-      : 'none'};
+  @media screen and (max-width: 650px) {
+    padding: 16px 16px;
+  }
   @media screen and (max-width: 500px) {
     background: ${({ theme }) => theme.bg6};
-    box-shadow: ${({ open }) =>
-      !open
-        ? '0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04) '
-        : 'none'};
   }
 `
 const Input = styled.input`
@@ -66,8 +64,9 @@ const Input = styled.input`
   border: none;
   outline: none;
   width: 100%;
-  color: ${({ theme }) => theme.text1};
-  font-size: ${({ large }) => (large ? '20px' : '14px')};
+  color: ${({ theme }) => theme.text6};
+  font-size: ${({ large }) => (large ? '18px' : '14px')};
+  font-weight: 400;
 
   ::placeholder {
     color: ${({ theme }) => theme.text3};
@@ -112,30 +111,73 @@ const Menu = styled.div`
   max-height: 540px;
   overflow: auto;
   left: 0;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   background: ${({ theme }) => theme.bg6};
-  border-bottom-right-radius: 12px;
-  border-bottom-left-radius: 12px;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
     0px 24px 32px rgba(0, 0, 0, 0.04);
   display: ${({ hide }) => hide && 'none'};
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.bg5};
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.bg4};
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.bg3};
+  }
 `
 
 const MenuItem = styled(Row)`
-  padding: 1rem;
+  padding: 1rem 30px;
   font-size: 0.85rem;
+  color: ${({ theme }) => theme.text6};
+  font-weight: 500;
+
+  > div {
+    font-weight: 500;
+    color: ${({ theme }) => theme.text6};
+  }
+
+  > div > div {
+    color: ${({ theme }) => theme.text6};
+    font-weight: 500;
+  }
+
+  > div > div > div {
+    color: ${({ theme }) => theme.text6};
+    font-weight: 500;
+  }
+
   & > * {
     margin-right: 6px;
   }
   :hover {
     cursor: pointer;
-    background-color: ${({ theme }) => theme.bg2};
+    background-color: ${({ theme }) => theme.bg5};
+  }
+
+  @media screen and (max-width: 650px){
+    padding: 1rem;
   }
 `
 
 const Heading = styled(Row)`
-  padding: 1rem;
+  padding: 1rem 30px;
   display: ${({ hide = false }) => hide && 'none'};
+
+  @media screen and (max-width: 650px){
+    padding: 1rem;
+  }
 `
 
 const Gray = styled.span`
@@ -430,10 +472,10 @@ export const Search = ({ small = false }) => {
               : below410
               ? 'Search...'
               : below470
-              ? 'Search Uniswap...'
+              ? 'Search FATExDEX...'
               : below700
               ? 'Search pairs and tokens...'
-              : 'Search Uniswap pairs and tokens...'
+              : 'Search FATExDEX pairs and tokens...'
           }
           value={value}
           onChange={(e) => {
@@ -475,13 +517,14 @@ export const Search = ({ small = false }) => {
           <Heading
             hide={!(Object.keys(filteredPairList).length > 3 && Object.keys(filteredPairList).length >= pairsShown)}
           >
-            <Blue
+            <Gray
               onClick={() => {
                 setPairsShown(pairsShown + 5)
               }}
+              style={{ cursor: 'pointer' }}
             >
               See more...
-            </Blue>
+            </Gray>
           </Heading>
         </div>
         <Heading>
@@ -501,8 +544,13 @@ export const Search = ({ small = false }) => {
                 <MenuItem>
                   <RowFixed>
                     <TokenLogo address={token.id} style={{ marginRight: '10px' }} />
-                    <FormattedName text={token.name} maxCharacters={20} style={{ marginRight: '6px' }} />
-                    (<FormattedName text={token.symbol} maxCharacters={6} />)
+                    <FormattedName
+                      text={token.name}
+                      maxCharacters={20}
+                      style={{ marginRight: '6px' }}
+                      color={theme.text6}
+                    />
+                    (<FormattedName text={token.symbol} maxCharacters={6} color={theme.text6} />)
                   </RowFixed>
                 </MenuItem>
               </BasicLink>
@@ -512,13 +560,14 @@ export const Search = ({ small = false }) => {
           <Heading
             hide={!(Object.keys(filteredTokenList).length > 3 && Object.keys(filteredTokenList).length >= tokensShown)}
           >
-            <Blue
+            <Gray
               onClick={() => {
                 setTokensShown(tokensShown + 5)
               }}
+              style={{ cursor: 'pointer' }}
             >
               See more...
-            </Blue>
+            </Gray>
           </Heading>
         </div>
       </Menu>

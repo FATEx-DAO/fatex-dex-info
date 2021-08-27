@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import 'feather-icons'
 import { withRouter } from 'react-router-dom'
 import { Text } from 'rebass'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import Link from '../components/Link'
 import Panel from '../components/Panel'
 import TokenLogo from '../components/TokenLogo'
@@ -38,6 +38,12 @@ import { shortenAddress } from '../utils'
 
 const DashboardWrapper = styled.div`
   width: 100%;
+`
+
+const PageTitle = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text1};
 `
 
 const PanelWrapper = styled.div`
@@ -181,7 +187,7 @@ function TokenPage({ address, history }) {
 
   const BlockedMessageWrapper = styled.div`
     border: 1px solid ${({ theme }) => theme.text3};
-    border-radius: 12px;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -375,14 +381,14 @@ function TokenPage({ address, history }) {
             </>
 
             <RowBetween style={{ marginTop: '3rem' }}>
-              <TYPE.main fontSize={'1.125rem'}>Top Pairs</TYPE.main>
+              <PageTitle fontSize={'1.125rem'}>Top Pairs</PageTitle>
               <AutoRow gap="4px" style={{ width: 'fit-content' }}>
                 <Checkbox
                   checked={useTracked}
                   setChecked={() => setUseTracked(!useTracked)}
                   text={'Hide unstable pairs'}
                 />
-                <QuestionHelper text="USD amounts may be inaccurate in low liquiidty pairs or pairs without ETH or stablecoins." />
+                <QuestionHelper text="USD amounts may be inaccurate in low liquidty pairs or pairs without ETH or stablecoins." />
               </AutoRow>
             </RowBetween>
             <Panel

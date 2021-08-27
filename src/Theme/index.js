@@ -15,97 +15,106 @@ const theme = (darkMode, color) => ({
   textColor: darkMode ? color : 'black',
 
   panelColor: darkMode ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, 0)',
-  backgroundColor: darkMode ? '#212429' : '#F7F8FA',
+  backgroundColor: darkMode ? '#000000' : '#FFFFFF',
 
-  uniswapPink: darkMode ? '#ff007a' : 'black',
+  uniswapPink: darkMode ? '#FFFFFF' : 'black',
 
   concreteGray: darkMode ? '#292C2F' : '#FAFAFA',
   inputBackground: darkMode ? '#1F1F1F' : '#FAFAFA',
-  shadowColor: darkMode ? '#000' : '#2F80ED',
+  shadowColor: darkMode ? '#000' : '#FFF',
   mercuryGray: darkMode ? '#333333' : '#E1E1E1',
 
-  text1: darkMode ? '#FAFAFA' : '#1F1F1F',
+  text1: darkMode ? '#FFFFFF' : '#000000',
   text2: darkMode ? '#C3C5CB' : '#565A69',
   text3: darkMode ? '#6C7284' : '#888D9B',
   text4: darkMode ? '#565A69' : '#C3C5CB',
   text5: darkMode ? '#2C2F36' : '#EDEEF2',
+  text6: darkMode ? '#000000' : '#FFFFFF',
 
   // special case text types
   white: '#FFFFFF',
 
   // backgrounds / greys
-  bg1: darkMode ? '#212429' : '#FAFAFA',
+  bg1: darkMode ? '#000000' : '#FFFFFF',
   bg2: darkMode ? '#2C2F36' : '#F7F8FA',
   bg3: darkMode ? '#40444F' : '#EDEEF2',
   bg4: darkMode ? '#565A69' : '#CED0D9',
-  bg5: darkMode ? '#565A69' : '#888D9B',
-  bg6: darkMode ? '#000' : '#FFFFFF',
+  bg5: darkMode ? '#b7b7b7' : '#888D9B',
+  bg6: darkMode ? '#FFFFFF' : '#000000',
 
   //specialty colors
-  modalBG: darkMode ? 'rgba(0,0,0,0.85)' : 'rgba(0,0,0,0.6)',
-  advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.4)',
+  modalBG: darkMode ? 'rgba(0,0,0,42.5)' : 'rgba(0,0,0,0.3)',
+  advancedBG: darkMode ? 'rgb(0,0,0)' : 'rgb(255,255,255)',
   onlyLight: darkMode ? '#22242a' : 'transparent',
   divider: darkMode ? 'rgba(43, 43, 43, 0.435)' : 'rgba(43, 43, 43, 0.035)',
 
   //primary colors
-  primary1: darkMode ? '#2172E5' : '#ff007a',
-  primary2: darkMode ? '#3680E7' : '#FF8CC3',
-  primary3: darkMode ? '#4D8FEA' : '#FF99C9',
-  primary4: darkMode ? '#376bad70' : '#F6DDE8',
-  primary5: darkMode ? '#153d6f70' : '#FDEAF1',
+  primary1: darkMode ? '#c8c02b' : '#ffad00',
+  primary2: darkMode ? '#c8c02c' : '#FFE08C',
+  primary3: darkMode ? '#c8c02d' : '#F2CB61',
+  primary4: darkMode ? '#376bad70' : '#FFE08C',
+  primary5: darkMode ? '#153d6f70' : '#FAECC5',
 
   // color text
-  primaryText1: darkMode ? '#6da8ff' : '#ff007a',
+  primaryText1: darkMode ? '#6da8ff' : '#ffad00',
 
   // secondary colors
-  secondary1: darkMode ? '#2172E5' : '#ff007a',
-  secondary2: darkMode ? '#17000b26' : '#F6DDE8',
-  secondary3: darkMode ? '#17000b26' : '#FDEAF1',
+  secondary1: darkMode ? '#c8c02b' : '#ffad00',
+  secondary2: darkMode ? '#17000b26' : '#FFE08C',
+  secondary3: darkMode ? '#17000b26' : '#FAECC5',
 
   shadow1: darkMode ? '#000' : '#2F80ED',
 
   // other
+  link: darkMode ? '#FFFFFF' : '#000000',
   red1: '#FF6871',
+  red2: '#F82D3A',
+  red3: '#D60000',
   green1: '#27AE60',
   yellow1: '#FFE270',
   yellow2: '#F3841E',
-  link: '#2172E5',
-  blue: '2f80ed',
+  blue1: '#2172E5',
 
-  background: darkMode ? 'black' : `radial-gradient(50% 50% at 50% 50%, #ff007a30 0%, #fff 0%)`,
+  background: darkMode ? 'black' : `white`,
 })
 
 const TextWrapper = styled(Text)`
-  color: ${({ color, theme }) => theme[color]};
+  color: ${({ theme }) => theme.text1};
+  font-weight: 500;
+  font-size: 14px;
+`
+
+const TextWrapperLight = styled(Text)`
+  color: ${({ theme }) => theme.text3};
 `
 
 export const TYPE = {
   main(props) {
-    return <TextWrapper fontWeight={500} fontSize={14} color={'text1'} {...props} />
+    return <TextWrapper fontWeight={500} fontSize={14} style={{ color: theme.text1 }} {...props} />
   },
 
   body(props) {
-    return <TextWrapper fontWeight={400} fontSize={14} color={'text1'} {...props} />
+    return <TextWrapper fontWeight={400} fontSize={14} style={{ color: theme.text1 }} {...props} />
   },
 
   small(props) {
-    return <TextWrapper fontWeight={500} fontSize={11} color={'text1'} {...props} />
+    return <TextWrapper fontWeight={500} fontSize={11} style={{ color: theme.text1 }} {...props} />
   },
 
   header(props) {
-    return <TextWrapper fontWeight={600} color={'text1'} {...props} />
+    return <TextWrapper fontWeight={600} style={{ color: theme.text1 }} {...props} />
   },
 
   largeHeader(props) {
-    return <TextWrapper fontWeight={500} color={'text1'} fontSize={24} {...props} />
+    return <TextWrapper fontWeight={500} style={{ color: theme.text1 }} fontSize={24} {...props} />
   },
 
   light(props) {
-    return <TextWrapper fontWeight={400} color={'text3'} fontSize={14} {...props} />
+    return <TextWrapperLight fontWeight={400} fontSize={14} {...props} />
   },
 
   pink(props) {
-    return <TextWrapper fontWeight={props.faded ? 400 : 600} color={props.faded ? 'text1' : 'text1'} {...props} />
+    return <TextWrapper fontWeight={props.faded ? 400 : 600} style={{ color: theme.text1 }} {...props} />
   },
 }
 
@@ -121,7 +130,7 @@ export const Link = styled.a.attrs({
 })`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.text1};
   font-weight: 500;
   :hover {
     text-decoration: underline;
@@ -144,8 +153,7 @@ export const ThemedBackground = styled.div`
   max-width: 100vw !important;
   height: 200vh;
   mix-blend-mode: color;
-  background: ${({ backgroundColor }) =>
-    `radial-gradient(50% 50% at 50% 50%, ${backgroundColor} 0%, rgba(255, 255, 255, 0) 100%)`};
+  background: ${({ theme }) => theme.bg1};
   position: absolute;
   top: 0px;
   left: 0px;
@@ -155,12 +163,6 @@ export const ThemedBackground = styled.div`
 `
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://rsms.me/inter/inter.css');
-  html { font-family: 'Inter', sans-serif; }
-  @supports (font-variation-settings: normal) {
-    html { font-family: 'Inter var', sans-serif; }
-  }
-  
   html,
   body {
     margin: 0;
@@ -169,6 +171,7 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-size: 14px;    
     background-color: ${({ theme }) => theme.bg6};
+    font-family: 'Lexend', sans-serif;
   }
 
   a {
@@ -177,6 +180,11 @@ export const GlobalStyle = createGlobalStyle`
     :hover {
       text-decoration: none
     }
+  }
+
+  button,
+  input {
+    font-family: 'Lexend', sans-serif;
   }
 
   
@@ -199,7 +207,7 @@ export const GlobalStyle = createGlobalStyle`
 	position: absolute;
 	padding: 8px;
 	font-size: 12px;
-	color: white;
+	color: ${({ theme }) => theme.text1};
 	background-color: rgba(255, 255, 255, 0.23);
 	text-align: left;
 	z-index: 10;

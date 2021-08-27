@@ -6,6 +6,7 @@ import { usePrevious } from 'react-use'
 import styled from 'styled-components'
 import { Play } from 'react-feather'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
+import theme from '../../Theme'
 
 const IconWrapper = styled.div`
   position: absolute;
@@ -99,21 +100,21 @@ const CandleStickChart = ({
         },
         grid: {
           vertLines: {
-            color: 'rgba(197, 203, 206, 0.5)',
+            color: theme.text1,
           },
           horzLines: {
-            color: 'rgba(197, 203, 206, 0.5)',
+            color: theme.text1,
           },
         },
         crosshair: {
           mode: CrosshairMode.Normal,
         },
         rightPriceScale: {
-          borderColor: 'rgba(197, 203, 206, 0.8)',
+          borderColor: theme.text1,
           visible: true,
         },
         timeScale: {
-          borderColor: 'rgba(197, 203, 206, 0.8)',
+          borderColor: theme.text1,
         },
         localization: {
           priceFormatter: (val) => formattedNum(val),
@@ -121,12 +122,12 @@ const CandleStickChart = ({
       })
 
       var candleSeries = chart.addCandlestickSeries({
-        upColor: 'green',
-        downColor: 'red',
-        borderDownColor: 'red',
-        borderUpColor: 'green',
-        wickDownColor: 'red',
-        wickUpColor: 'green',
+        upColor: '#27AE60',
+        downColor: '#F82D3A',
+        borderDownColor: '#F82D3A',
+        borderUpColor: '#27AE60',
+        wickDownColor: '#F82D3A',
+        wickUpColor: '#27AE60',
       })
 
       candleSeries.setData(formattedData)

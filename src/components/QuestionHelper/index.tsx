@@ -20,6 +20,12 @@ const QuestionWrapper = styled.div`
   :focus {
     opacity: 0.7;
   }
+  
+  > svg {
+    height: 15px;
+    width: 15px;
+    padding-left: 1px;
+  }
 `
 
 const TooltipContainer = styled.div`

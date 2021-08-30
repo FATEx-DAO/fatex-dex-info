@@ -154,7 +154,7 @@ export const customStylesTime = {
   control: (styles, state) => ({
     ...styles,
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: theme.text1,
     color: '#6C7284',
     maxHeight: '32px',
     margin: 0,

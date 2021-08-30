@@ -14,10 +14,11 @@ const PopoverContainer = styled.div<{ show: boolean }>`
   transition: visibility 150ms linear, opacity 150ms linear;
 
   background: ${({ theme }) => theme.bg2};
-  border: 1px solid ${({ theme }) => theme.bg3};
-  box-shadow: 0 4px 8px 0 ${({ theme }) => transparentize(0.9, theme.shadow1)};
+  border: none;
   color: ${({ theme }) => theme.text2};
-  border-radius: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 200 !important;
 `
 
 const ReferenceElement = styled.div`

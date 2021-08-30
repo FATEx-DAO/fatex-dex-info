@@ -27,10 +27,9 @@ const LogoBox = styled.div`
 `
 
 const CustomMenu = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.text1};
   position: absolute;
   border-radius: 16px;
-  box-shadow: 0 4px 8px 0 rgba(47, 128, 237, 0.1), 0 0 0 0.5px var(--c-zircon);
   overflow: hidden;
   padding: 0;
   width: 180px;
@@ -43,7 +42,7 @@ const FixedToggle = styled.div`
   position: absolute;
   height: 24px;
   z-index: 10;
-  background-color: white;
+  background-color: ${({ theme }) => theme.text1};
   width: 100%;
   top: 8px;
   display: flex;

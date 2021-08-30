@@ -48,7 +48,7 @@ const Right = styled.div`
   width: ${({ open }) => (open ? '220px' : '64px')};
   height: ${({ open }) => (open ? 'fit-content' : '64px')};
   overflow: auto;
-  background-color: ${({ theme }) => theme.bg1};
+  background-color: none;
   @media screen and (max-width: 1400px) {
     display: none;
   }
@@ -58,7 +58,7 @@ const Center = styled.div`
   height: 100%;
   z-index: 9999;
   transition: width 0.25s ease;
-  background-color: ${({ theme }) => theme.onlyLight};
+  background-color: ${({ theme }) => theme.bg1};
 `
 
 const WarningWrapper = styled.div`
@@ -70,7 +70,7 @@ const WarningWrapper = styled.div`
 const WarningBanner = styled.div`
   background-color: #ff6871;
   padding: 1.5rem;
-  color: white;
+  color: ${({ theme }) => theme.text1};
   width: 100%;
   text-align: center;
   font-weight: 500;

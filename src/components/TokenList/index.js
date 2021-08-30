@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 
@@ -27,7 +27,7 @@ const PageButtons = styled.div`
 `
 
 const Arrow = styled.div`
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.text1};
   opacity: ${(props) => (props.faded ? 0.3 : 1)};
   padding: 0 20px;
   user-select: none;

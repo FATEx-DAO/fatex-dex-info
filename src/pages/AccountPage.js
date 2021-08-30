@@ -20,10 +20,11 @@ import { FEE_WARNING_TOKENS } from '../constants'
 import { BasicLink } from '../components/Link'
 import { useMedia } from 'react-use'
 import Search from '../components/Search'
-import { useSavedAccounts } from '../contexts/LocalStorage'
+import { useDarkModeManager, useSavedAccounts } from '../contexts/LocalStorage'
+import theme from '../Theme'
 
 const AccountWrapper = styled.div`
-  background-color: rgba(255, 255, 255, 0.2);
+  /*background-color: rgba(255, 255, 255, 0.2);*/
   padding: 6px 16px;
   border-radius: 100px;
   display: flex;
@@ -40,33 +41,55 @@ const DashboardWrapper = styled.div`
 const DropdownWrapper = styled.div`
   position: relative;
   margin-bottom: 1rem;
-  border: 1px solid #edeef2;
-  border-radius: 12px;
+  /*border: 1px solid #edeef2;*/
+  border-radius: 8px;
+
+  :hover {
+    > button,
+    > button > div,
+    > button > div > div,
+    > button > div > div > div,
+    > button > div > div > div > div {
+      color: ${({ theme }) => theme.text6};
+      background-color: ${({ theme }) => theme.bg6};
+    }
+  }
 `
 
 const Flyout = styled.div`
   position: absolute;
-  top: 38px;
-  left: -1px;
+  top: 42px;
   width: 100%;
-  background-color: ${({ theme }) => theme.bg1};
+  min-height: 15px;
+  background-color: ${({ theme }) => theme.bg6};
   z-index: 999;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
   padding-top: 4px;
-  border: 1px solid #edeef2;
   border-top: none;
+  color: ${({ theme }) => theme.text6};
+  overflow: auto;
 `
 
 const MenuRow = styled(Row)`
   width: 100%;
   padding: 12px 0;
   padding-left: 12px;
+  > div,
+  > div > div {
+    color: ${({ theme }) => theme.text6};
+  }
 
   :hover {
     cursor: pointer;
-    background-color: ${({ theme }) => theme.bg2};
+    background-color: ${({ theme }) => theme.bg5};
   }
+`
+
+const NoPositions = styled.div`
+  padding: 18px 30px;
+  font-weight: 400;
+  color: ${({ themem }) => theme.text1};
 `
 
 const PanelWrapper = styled.div`
@@ -89,6 +112,8 @@ const Warning = styled.div`
 `
 
 function AccountPage({ account }) {
+  const [darkMode] = useDarkModeManager()
+
   // get data for this account
   const transactions = useUserTransactions(account)
   const positions = useUserPositions(account)
@@ -176,16 +201,16 @@ function AccountPage({ account }) {
         <Header>
           <RowBetween>
             <span>
-              <TYPE.header fontSize={24}>{account?.slice(0, 6) + '...' + account?.slice(38, 42)}</TYPE.header>
+              <TYPE.body fontSize={24}>{account?.slice(0, 6) + '...' + account?.slice(38, 42)}</TYPE.body>
               <Link lineHeight={'145.23%'} href={'https://etherscan.io/address/' + account} target="_blank">
-                <TYPE.main fontSize={14}>View on Etherscan</TYPE.main>
+                <TYPE.body fontSize={14}>View on Etherscan</TYPE.body>
               </Link>
             </span>
             <AccountWrapper>
               <StyledIcon>
                 <Bookmark
                   onClick={handleBookmarkClick}
-                  style={{ opacity: isBookmarked ? 0.8 : 0.4, cursor: 'pointer' }}
+                  style={{ opacity: isBookmarked ? 0.8 : 0.4, cursor: 'pointer', fill: isBookmarked ? darkMode ? '#FFFFFF' : '#000000' : 'none' }}
                 />
               </StyledIcon>
             </AccountWrapper>
@@ -239,7 +264,7 @@ function AccountPage({ account }) {
                           </MenuRow>
                         )
                       )
-                    })}
+                    }) || <NoPositions>No positions</NoPositions>}
                     {activePosition && (
                       <MenuRow
                         onClick={() => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
+import FatexLogo from '../../assets/fatex-logo.png'
 
 const pulse = keyframes`
   0% { transform: scale(1); }
@@ -15,6 +16,7 @@ const Wrapper = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
+  background-color: ${({ theme }) => theme.bg1};
 
   ${(props) =>
     props.fill && !props.height
@@ -38,8 +40,8 @@ const LocalLoader = ({ fill }) => {
 
   return (
     <Wrapper fill={fill}>
-      <AnimatedImg>
-        <img src={require(darkMode ? '../../assets/logo_white.svg' : '../../assets/logo.svg')} alt="loading-icon" />
+      <AnimatedImg style={{ filter: `${darkMode ? 'invert(0)' : 'invert(1)'}` }}>
+        <img src={FatexLogo} alt="loading-icon" />
       </AnimatedImg>
     </Wrapper>
   )

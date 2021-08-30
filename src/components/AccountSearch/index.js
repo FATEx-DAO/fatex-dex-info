@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 8px;
 `
 
 const Input = styled.input`
@@ -33,17 +33,17 @@ const Input = styled.input`
   background: none;
   border: none;
   outline: none;
-  padding: 12px 16px;
-  border-radius: 12px;
-  color: ${({ theme }) => theme.text1};
-  background-color: ${({ theme }) => theme.bg1};
-  font-size: 16px;
+  padding: 16px 30px;
+  border-radius: 8px;
+  color: ${({ theme }) => theme.text6};
+  background-color: ${({ theme }) => theme.bg6};
+  font-size: 18px;
   margin-right: 1rem;
-  border: 1px solid ${({ theme }) => theme.bg3};
+  border: none;
 
   ::placeholder {
     color: ${({ theme }) => theme.text3};
-    font-size: 14px;
+    font-size: 16px;
   }
 
   @media screen and (max-width: 640px) {

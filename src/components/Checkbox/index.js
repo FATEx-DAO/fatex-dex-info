@@ -16,6 +16,8 @@ const StyleCheckbox = styled.input`
 `
 
 const ButtonText = styled(TYPE.main)`
+  color: ${({ theme }) => theme.text1};
+
   cursor: pointer;
   :hover {
     opacity: 0.6;

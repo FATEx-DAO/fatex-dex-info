@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   z-index: 20;
   position: relative;
   background-color: ${({ theme }) => theme.panelColor};
-  border: 1px solid ${({ open, color }) => (open ? color : 'rgba(0, 0, 0, 0.15);')} 
+  border: 3px solid ${({ theme }) => theme.text1};
   width: 100px;
   padding: 4px 10px;
   padding-right: 6px;

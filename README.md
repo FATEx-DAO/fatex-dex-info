@@ -1,4 +1,4 @@
-# FATEx Info
+# FATExDEX Info
 
 [![Lint](https://github.com/FATEx-DAO/fatex-dex-info/workflows/Lint/badge.svg)](https://github.com/FATEx-DAO/fatex-dex-info/actions?query=workflow%3ALint)
 [![Deploy](https://github.com/FATEx-DAO/fatex-dex-info/workflows/Deploy/badge.svg)](https://github.com/FATEx-DAO/fatex-dex-info/actions?query=workflow%3ADeploy)

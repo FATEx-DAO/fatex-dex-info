@@ -73,6 +73,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "firebase deploy --only hosting:fatex-dex-info",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

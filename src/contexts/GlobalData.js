@@ -460,7 +460,7 @@ const getEthPrice = async () => {
     ethPrice = currentPrice
     ethPriceOneDay = oneDayBackPrice
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 
   return [ethPrice, ethPriceOneDay, priceChangeETH]

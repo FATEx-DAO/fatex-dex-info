@@ -160,16 +160,17 @@ const TradingViewChart = ({
 
       // format numbers
       let percentChange = baseChange?.toFixed(2)
-      let formattedPercentChange = (percentChange > 0 ? '+' : '') + percentChange + '%'
+      let formattedPercentChange =
+        typeof percentChange !== 'undefined' ? (percentChange > 0 ? '+' : '') + percentChange + '%' : ''
       let color = percentChange >= 0 ? 'green' : 'red'
 
       // get the title of the chart
       function setLastBarText() {
         toolTip.innerHTML =
-          `<div style="font-size: 16px; margin: 4px 0px; color: ${textColor};">${title} ${
+          `<div style="font-size: 16px; margin: 4px 0; color: ${textColor};">${title} ${
             type === CHART_TYPES.BAR && !useWeekly ? '(24hr)' : ''
           }</div>` +
-          `<div style="font-size: 22px; margin: 4px 0px; color:${textColor}" >` +
+          `<div style="font-size: 22px; margin: 4px 0; color:${textColor}" >` +
           formattedNum(base ?? 0, true) +
           `<span style="margin-left: 10px; font-size: 16px; color: ${color};">${formattedPercentChange}</span>` +
           '</div>'
@@ -200,8 +201,8 @@ const TradingViewChart = ({
           var price = param.seriesPrices.get(series)
 
           toolTip.innerHTML =
-            `<div style="font-size: 16px; margin: 4px 0px; color: ${textColor};">${title}</div>` +
-            `<div style="font-size: 22px; margin: 4px 0px; color: ${textColor}">` +
+            `<div style="font-size: 16px; margin: 4px 0; color: ${textColor};">${title}</div>` +
+            `<div style="font-size: 22px; margin: 4px 0; color: ${textColor}">` +
             formattedNum(price, true) +
             '</div>' +
             '<div>' +

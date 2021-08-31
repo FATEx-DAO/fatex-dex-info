@@ -47,7 +47,7 @@ export default function GlobalStats() {
               }}
               style={{ position: 'relative' }}
             >
-              ETH Price: <Medium>{formattedOnePrice}</Medium>
+              ONE Price: <Medium>{formattedOnePrice}</Medium>
               {showPriceCard && <UniPrice />}
             </TYPE.main>
           )}

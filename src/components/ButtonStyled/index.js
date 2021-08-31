@@ -175,7 +175,7 @@ export const OptionButton = styled.div`
   padding: 6px;
   border-radius: 6px;
   border: 2px solid ${({ theme }) => theme.bg6};
-  background-color: ${({ active, theme }) => active && theme.bg6};
+  background-color: ${({ active, theme }) => active ? theme.bg6 : theme.bg1};
   color: ${({ theme, active }) => (active ? theme.text6 : theme.text1)};
 
   > div {

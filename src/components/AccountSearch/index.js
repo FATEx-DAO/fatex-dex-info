@@ -164,7 +164,7 @@ function AccountSearch({ history, small }) {
                 )
               })
             ) : (
-              <TYPE.light>No pinned wallets</TYPE.light>
+              <TYPE.light>No saved wallets</TYPE.light>
             )}
           </>
         )}

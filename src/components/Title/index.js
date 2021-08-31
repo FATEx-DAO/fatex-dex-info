@@ -62,6 +62,11 @@ const LogoImage = styled.div`
   }
 `
 
+const Tiny = styled.span`
+  font-size: 1rem;
+  font-weight: 200;
+`
+
 export default function Title() {
   const history = useHistory()
   const below1080 = useMedia('(max-width: 1080px)')
@@ -72,7 +77,7 @@ export default function Title() {
         <RowFixed>
           {!below1080 ? (
             <LogoText id="link" onClick={() => history.push('/')}>
-              FATEx
+              FATEx<Tiny>DAO</Tiny>
             </LogoText>
           ) : (
             <LogoImage>

@@ -19,6 +19,7 @@ import { PAIR_BLACKLIST } from './constants'
 import LocalLoader from './components/LocalLoader'
 import { useLatestBlocks } from './contexts/Application'
 import GoogleAnalyticsReporter from './components/analytics/GoogleAnalyticsReporter'
+import Footer from './components/Footer'
 
 const AppWrapper = styled.div`
   position: relative;
@@ -200,6 +201,7 @@ function App() {
 
               <Redirect to="/home" />
             </Switch>
+            <Footer />
           </BrowserRouter>
         ) : (
           <LocalLoader fill="true" />

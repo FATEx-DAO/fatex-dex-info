@@ -1,6 +1,8 @@
 import React from 'react'
 import { Flex } from 'rebass'
 
+import styled from 'styled-components'
+
 import Link from '../Link'
 
 const links = [
@@ -15,14 +17,27 @@ const FooterLink = ({ children, ...rest }) => (
   </Link>
 )
 
+const FooterWrapper = styled.div`
+  width: calc(100% - 324px);
+  margin-top: -63px;
+  z-index: 9999;
+  position: absolute;
+  bottom: 0;
+  left: 220px;
+  padding: 20px;
+  color: ${({ theme }) => theme.text1} !important;
+  font-weight: 300;
+  font-size: 12px;
+  text-align: center;
+`
+
 const Footer = () => (
-  <Flex as="footer" p={24}>
-    {links.map((link, index) => (
-      <FooterLink key={index} href={link.url}>
-        {link.text}
-      </FooterLink>
-    ))}
-  </Flex>
+  <FooterWrapper>
+    © FATExDAO 2021
+    <br />
+    "FATExDAO" and the FATExDAO logo are unregistered trademarks owned by the FATExDAO. Any unauthorized use is expressly
+    prohibited.
+  </FooterWrapper>
 )
 
 export default Footer

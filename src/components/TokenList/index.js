@@ -185,7 +185,7 @@ function TopTokenList({ tokens, itemMax = 10, useTracked = false }) {
             <TokenLogo address={item.id} />
             <CustomLink style={{ marginLeft: '16px', whiteSpace: 'nowrap' }} to={'/token/' + item.id}>
               <FormattedName
-                text={below680 ? item.symbol : item.name}
+                text={below680 ? item.symbol.replace('FATExDAO','FATE').replace('xFATExDAO','xFATE') : item.name.replace('FATExDAO','FATE').replace('xFATExDAO','xFATE')}
                 maxCharacters={below600 ? 8 : 16}
                 adjustSize={true}
                 link={true}

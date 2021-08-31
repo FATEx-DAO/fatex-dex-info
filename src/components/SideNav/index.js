@@ -182,6 +182,21 @@ function SideNav({ history }) {
                 Twitter
               </Link>
             </HeaderText>
+            <HeaderText>
+              <Link href="https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg" target="_blank">
+                YouTube
+              </Link>
+            </HeaderText>
+            <HeaderText>
+              <Link href="https://www.reddit.com/r/FATExDAO" target="_blank">
+                Reddit
+              </Link>
+            </HeaderText>
+            <HeaderText>
+              <Link href="https://fatexdao.medium.com" target="_blank">
+                Medium
+              </Link>
+            </HeaderText>
             <Toggle isActive={isDark} toggle={toggleDarkMode} />
           </AutoColumn>
           {!below1180 && (

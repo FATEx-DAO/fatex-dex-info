@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import OneLogo from '../../assets/one.jpg'
 import { useListedTokensMap } from '../../contexts/Application'
+import { lighten, darken } from 'polished'
 
 const BAD_IMAGES = {}
 
@@ -14,7 +15,6 @@ const Inline = styled.div`
 const Image = styled.img`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
-  //background-color: ${({ theme }) => theme.text1};
   border-radius: 50%;
 `
 

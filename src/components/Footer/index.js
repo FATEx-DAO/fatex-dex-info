@@ -29,14 +29,19 @@ const FooterWrapper = styled.div`
   font-weight: 300;
   font-size: 12px;
   text-align: center;
+
+  @media screen and (max-width: 1080px) {
+    width: calc(100% - 40px);
+    left: 0;
+  }
 `
 
 const Footer = () => (
   <FooterWrapper>
     © FATExDAO 2021
     <br />
-    "FATExDAO" and the FATExDAO logo are unregistered trademarks owned by the FATExDAO. Any unauthorized use is expressly
-    prohibited.
+    "FATExDAO" and the FATExDAO logo are unregistered trademarks owned by the FATExDAO. Any unauthorized use is
+    expressly prohibited.
   </FooterWrapper>
 )
 

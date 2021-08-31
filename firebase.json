@@ -13,7 +13,7 @@
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "max-age=0"
+            "value": "no-cache"
           }
         ]
       },
@@ -22,9 +22,15 @@
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "max-age=0"
+            "value": "no-cache"
           }
         ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }

@@ -11,10 +11,12 @@ const UPDATE = 'UPDATE'
 const UPDATE_TIMEFRAME = 'UPDATE_TIMEFRAME'
 const UPDATE_SESSION_START = 'UPDATE_SESSION_START'
 const UPDATED_SUPPORTED_TOKENS = 'UPDATED_SUPPORTED_TOKENS'
+const UPDATED_SUPPORTED_TOKEN_OBJECTS = 'UPDATED_SUPPORTED_TOKEN_OBJECTS'
 const UPDATE_LATEST_BLOCK = 'UPDATE_LATEST_BLOCK'
 const UPDATE_HEAD_BLOCK = 'UPDATE_HEAD_BLOCK'
 
 const SUPPORTED_TOKENS = 'SUPPORTED_TOKENS'
+const SUPPORTED_TOKEN_OBJECTS = 'SUPPORTED_TOKEN_OBJECTS'
 const TIME_KEY = 'TIME_KEY'
 const CURRENCY = 'CURRENCY'
 const SESSION_START = 'SESSION_START'
@@ -75,6 +77,14 @@ function reducer(state, { type, payload }) {
       }
     }
 
+    case UPDATED_SUPPORTED_TOKEN_OBJECTS: {
+      const { supportedTokenObjects } = payload
+      return {
+        ...state,
+        [SUPPORTED_TOKEN_OBJECTS]: supportedTokenObjects,
+      }
+    }
+
     default: {
       throw Error(`Unexpected action type in DataContext reducer: '${type}'.`)
     }
@@ -126,6 +136,15 @@ export default function Provider({ children }) {
     })
   }, [])
 
+  const updateSupportedTokenObjects = useCallback((supportedTokenObjects) => {
+    dispatch({
+      type: UPDATED_SUPPORTED_TOKEN_OBJECTS,
+      payload: {
+        supportedTokenObjects,
+      },
+    })
+  }, [])
+
   const updateLatestBlock = useCallback((block) => {
     dispatch({
       type: UPDATE_LATEST_BLOCK,
@@ -154,11 +173,21 @@ export default function Provider({ children }) {
             updateSessionStart,
             updateTimeframe,
             updateSupportedTokens,
+            updateSupportedTokenObjects,
             updateLatestBlock,
             updateHeadBlock,
           },
         ],
-        [state, update, updateTimeframe, updateSessionStart, updateSupportedTokens, updateLatestBlock, updateHeadBlock]
+        [
+          state,
+          update,
+          updateTimeframe,
+          updateSessionStart,
+          updateSupportedTokens,
+          updateSupportedTokenObjects,
+          updateLatestBlock,
+          updateHeadBlock,
+        ]
       )}
     >
       {children}
@@ -263,6 +292,27 @@ export function useSessionStart() {
   return parseInt(seconds / 1000)
 }
 
+export function useListedTokenObjects() {
+  const [state, { updateSupportedTokenObjects }] = useApplicationContext()
+  const supportedTokens = state?.[SUPPORTED_TOKEN_OBJECTS]
+
+  useEffect(() => {
+    async function fetchList() {
+      const allFetched = await SUPPORTED_LIST_URLS__NO_ENS.reduce(async (fetchedTokens, url) => {
+        const tokensSoFar = await fetchedTokens
+        const newTokens = await getTokenList(url)
+        return Promise.resolve([...tokensSoFar, ...newTokens.tokens])
+      }, Promise.resolve([]))
+      updateSupportedTokenObjects(allFetched)
+    }
+    if (!supportedTokens) {
+      fetchList()
+    }
+  }, [updateSupportedTokenObjects, supportedTokens])
+
+  return supportedTokens
+}
+
 export function useListedTokens() {
   const [state, { updateSupportedTokens }] = useApplicationContext()
   const supportedTokens = state?.[SUPPORTED_TOKENS]
@@ -283,4 +333,14 @@ export function useListedTokens() {
   }, [updateSupportedTokens, supportedTokens])
 
   return supportedTokens
+}
+
+export function useListedTokensMap() {
+  const tokens = useListedTokenObjects()
+  return useMemo(() => {
+    return tokens?.reduce((memo, token) => {
+      memo[token.address.toLowerCase()] = token
+      return memo
+    }, {})
+  }, [tokens])
 }

@@ -191,7 +191,7 @@ function AccountPage({ account }) {
         <RowBetween>
           <TYPE.body>
             <BasicLink to="/accounts">{'Accounts '}</BasicLink>→{' '}
-            <Link lineHeight={'145.23%'} href={'https://etherscan.io/address/' + account} target="_blank">
+            <Link lineHeight={'145.23%'} href={'https://explorer.harmony.one/address/' + account} target="_blank">
               {' '}
               {account?.slice(0, 42)}{' '}
             </Link>
@@ -202,8 +202,8 @@ function AccountPage({ account }) {
           <RowBetween>
             <span>
               <TYPE.body fontSize={24}>{account?.slice(0, 6) + '...' + account?.slice(38, 42)}</TYPE.body>
-              <Link lineHeight={'145.23%'} href={'https://etherscan.io/address/' + account} target="_blank">
-                <TYPE.body fontSize={14}>View on Etherscan</TYPE.body>
+              <Link lineHeight={'145.23%'} href={'https://explorer.harmony.one/address/' + account} target="_blank">
+                <TYPE.body fontSize={14}>View on Explorer</TYPE.body>
               </Link>
             </span>
             <AccountWrapper>

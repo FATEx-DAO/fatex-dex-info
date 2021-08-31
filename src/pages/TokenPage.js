@@ -35,6 +35,7 @@ import { UNTRACKED_COPY, TOKEN_BLACKLIST, BLOCKED_WARNINGS } from '../constants'
 import QuestionHelper from '../components/QuestionHelper'
 import Checkbox from '../components/Checkbox'
 import { shortenAddress } from '../utils'
+import theme from '../Theme'
 
 const DashboardWrapper = styled.div`
   width: 100%;
@@ -203,9 +204,10 @@ function TokenPage({ address, history }) {
             <TYPE.light style={{ textAlign: 'center' }}>
               {BLOCKED_WARNINGS[address] ?? `This token is not supported.`}
             </TYPE.light>
-            <Link external={true} href={'https://etherscan.io/address/' + address}>{`More about ${shortenAddress(
-              address
-            )}`}</Link>
+            <Link
+              external={true}
+              href={'https://explorer.harmony.one/address/' + address}
+            >{`More about ${shortenAddress(address)}`}</Link>
           </AutoColumn>
         </BlockedMessageWrapper>
       </BlockedWrapper>
@@ -229,9 +231,9 @@ function TokenPage({ address, history }) {
             </TYPE.body>
             <Link
               style={{ width: 'fit-content' }}
-              color={backgroundColor}
+              color={theme.text1}
               external
-              href={'https://etherscan.io/address/' + address}
+              href={'https://explorer.harmony.one/address/' + address}
             >
               <Text style={{ marginLeft: '.15rem' }} fontSize={'14px'} fontWeight={400}>
                 ({address.slice(0, 8) + '...' + address.slice(36, 42)})
@@ -284,10 +286,10 @@ function TokenPage({ address, history }) {
                     <></>
                   )}
                   <Link href={getPoolLink(address)} target="_blank">
-                    <ButtonLight color={backgroundColor}>+ Add Liquidity</ButtonLight>
+                    <ButtonLight color={theme.text1}>+ Add Liquidity</ButtonLight>
                   </Link>
                   <Link href={getSwapLink(address)} target="_blank">
-                    <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
+                    <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={theme.text1}>
                       Trade
                     </ButtonDark>
                   </Link>
@@ -443,11 +445,9 @@ function TokenPage({ address, history }) {
                       <CopyHelper toCopy={address} />
                     </AutoRow>
                   </Column>
-                  <ButtonLight color={backgroundColor}>
-                    <Link color={backgroundColor} external href={'https://etherscan.io/address/' + address}>
-                      View on Etherscan ↗
-                    </Link>
-                  </ButtonLight>
+                  <Link external href={'https://explorer.harmony.one/address/' + address}>
+                    <ButtonLight color={theme.text1}>View on Explorer ↗</ButtonLight>
+                  </Link>
                 </TokenDetailsLayout>
               </Panel>
             </>

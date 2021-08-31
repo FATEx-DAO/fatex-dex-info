@@ -23,7 +23,7 @@ import { useMedia } from 'react-use'
 import DoubleTokenLogo from '../components/DoubleLogo'
 import TokenLogo from '../components/TokenLogo'
 import { Hover } from '../components'
-import { useEthPrice } from '../contexts/GlobalData'
+import { useOnePrice } from '../contexts/GlobalData'
 import Warning from '../components/Warning'
 import { usePathDismissed, useSavedPairs } from '../contexts/LocalStorage'
 
@@ -32,6 +32,7 @@ import FormattedName from '../components/FormattedName'
 import { useListedTokens } from '../contexts/Application'
 import HoverText from '../components/HoverText'
 import { UNTRACKED_COPY } from '../constants'
+import theme from '../Theme'
 
 const DashboardWrapper = styled.div`
   width: 100%;
@@ -157,7 +158,7 @@ function PairPage({ pairAddress, history }) {
       : '-'
 
   // token data for usd
-  const [ethPrice] = useEthPrice()
+  const [ethPrice] = useOnePrice()
   const token0USD =
     token0?.derivedETH && ethPrice ? formattedNum(parseFloat(token0.derivedETH) * parseFloat(ethPrice), true) : ''
 
@@ -264,10 +265,10 @@ function PairPage({ pairAddress, history }) {
                   )}
 
                   <Link external href={getPoolLink(token0?.id, token1?.id)}>
-                    <ButtonLight color={backgroundColor}>+ Add Liquidity</ButtonLight>
+                    <ButtonLight color={theme.text1}>+ Add Liquidity</ButtonLight>
                   </Link>
                   <Link external href={getSwapLink(token0?.id, token1?.id)}>
-                    <ButtonDark ml={!below1080 && '.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
+                    <ButtonDark ml={!below1080 && '.5rem'} mr={below1080 && '.5rem'} color={theme.text1}>
                       Trade
                     </ButtonDark>
                   </Link>
@@ -476,11 +477,9 @@ function PairPage({ pairAddress, history }) {
                       <CopyHelper toCopy={token1?.id} />
                     </AutoRow>
                   </Column>
-                  <ButtonLight color={backgroundColor}>
-                    <Link color={backgroundColor} external href={'https://etherscan.io/address/' + pairAddress}>
-                      View on Etherscan ↗
-                    </Link>
-                  </ButtonLight>
+                  <Link color={backgroundColor} external href={'https://explorer.harmony.one/address/' + pairAddress}>
+                    <ButtonLight color={theme.text1}>View on Explorer ↗</ButtonLight>
+                  </Link>
                 </TokenDetailsLayout>
               </Panel>
             </>

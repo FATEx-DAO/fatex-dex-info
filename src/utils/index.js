@@ -13,7 +13,7 @@ import Numeral from 'numeral'
 
 // format libraries
 const Decimal = toFormat(_Decimal)
-BigNumber.set({ EXPONENTIAL_AT: 50 })
+BigNumber.set({ EXPETHNTIAL_AT: 50 })
 dayjs.extend(utc)
 
 export function getTimeframe(timeWindow) {
@@ -303,10 +303,10 @@ export const setThemeColor = (theme) => document.documentElement.style.setProper
 export const Big = (number) => new BigNumber(number)
 
 export const urls = {
-  showTransaction: (tx) => `https://etherscan.io/tx/${tx}/`,
-  showAddress: (address) => `https://www.etherscan.io/address/${address}/`,
-  showToken: (address) => `https://www.etherscan.io/token/${address}/`,
-  showBlock: (block) => `https://etherscan.io/block/${block}/`,
+  showTransaction: (tx) => `https://explorer.harmony.one/tx/${tx}/`,
+  showAddress: (address) => `https://explorer.harmony.one/address/${address}/`,
+  showToken: (address) => `https://explorer.harmony.one/address/${address}/`,
+  showBlock: (block) => `https://explorer.harmony.one/block/${block}/`,
 }
 
 export const formatTime = (unix) => {
@@ -376,7 +376,7 @@ export const formattedNum = (number, usd = false, acceptNegatives = false) => {
   }
 
   if (usd) {
-    if (num < 0.1) {
+    if (num < 1) {
       return formatDollarAmount(num, 4)
     } else {
       return formatDollarAmount(num, 2)

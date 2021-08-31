@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { isAddress } from '../../utils/index.js'
-import EthereumLogo from '../../assets/eth.png'
+import OneLogo from '../../assets/one.jpg'
+import { useListedTokensMap } from '../../contexts/Application'
 
 const BAD_IMAGES = {}
 
@@ -14,11 +14,11 @@ const Inline = styled.div`
 const Image = styled.img`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
-  background-color: ${({ theme }) => theme.text1};
+  //background-color: ${({ theme }) => theme.text1};
   border-radius: 50%;
 `
 
-const StyledEthereumLogo = styled.div`
+const StyledOneLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,15 +31,16 @@ const StyledEthereumLogo = styled.div`
 
 export default function TokenLogo({ address, header = false, size = '24px', ...rest }) {
   const [error, setError] = useState(false)
+  const tokenMap = useListedTokensMap()
 
   useEffect(() => {
     setError(false)
   }, [address])
 
-  if (error || BAD_IMAGES[address]) {
+  if (!tokenMap || error || BAD_IMAGES[address]) {
     return (
       <Inline>
-        <span {...rest} alt={''} style={{ fontSize: size }} role="img" aria-label="face">
+        <span {...rest} style={{ fontSize: size }} role="img" aria-label="face">
           🤔
         </span>
       </Inline>
@@ -55,24 +56,22 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     address = '0xc011a72400e58ecd99ee497cf89e3775d4bd732f'
   }
 
-  if (address?.toLowerCase() === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') {
+  if (address?.toLowerCase() === '0xcf664087a5bb0237a0bad6742852ec6c8d69a27a') {
     return (
-      <StyledEthereumLogo size={size} {...rest}>
+      <StyledOneLogo size={size} {...rest}>
         <img
-          src={EthereumLogo}
+          src={OneLogo}
           style={{
             boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.075)',
             borderRadius: '24px',
           }}
           alt=""
         />
-      </StyledEthereumLogo>
+      </StyledOneLogo>
     )
   }
 
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
-    address
-  )}/logo.png`
+  const path = tokenMap[address]?.logoURI
 
   return (
     <Inline>

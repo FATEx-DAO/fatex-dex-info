@@ -6,11 +6,7 @@ import styled from 'styled-components'
 import { lighten, darken } from 'polished'
 
 const WrappedLink = ({ external, children, ...rest }) => (
-  <RebassLink
-    target={external ? '_blank' : null}
-    rel={external ? 'noopener noreferrer' : null}
-    {...rest}
-  >
+  <RebassLink target={external ? '_blank' : null} rel={external ? 'noopener noreferrer' : null} {...rest}>
     {children}
   </RebassLink>
 )

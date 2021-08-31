@@ -300,7 +300,7 @@ async function getGlobalData(ethPrice, oldEthPrice) {
       data.txnChange = txnChange
     }
   } catch (e) {
-    console.log(e)
+    console.error('Caught error in global data: ', e)
   }
 
   return data
@@ -530,7 +530,7 @@ async function getAllTokensOnUniswap() {
  */
 export function useGlobalData() {
   const [state, { update, updateAllPairsInUniswap, updateAllTokensInUniswap }] = useGlobalDataContext()
-  const [ethPrice, oldEthPrice] = useEthPrice()
+  const [ethPrice, oldEthPrice] = useOnePrice()
 
   const data = state?.globalData
 
@@ -607,7 +607,7 @@ export function useGlobalTransactions() {
   return transactions
 }
 
-export function useEthPrice() {
+export function useOnePrice() {
   const [state, { updateEthPrice }] = useGlobalDataContext()
   const ethPrice = state?.[ETH_PRICE_KEY]
   const ethPriceOld = state?.['oneDayPrice']

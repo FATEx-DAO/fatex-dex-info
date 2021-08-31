@@ -2,17 +2,16 @@ import { useState, useCallback, useEffect, useRef } from 'react'
 import { shade } from 'polished'
 import Vibrant from 'node-vibrant'
 import { hex } from 'wcag-contrast'
-import { isAddress } from '../utils'
 import copy from 'copy-to-clipboard'
+import { useListedTokensMap } from '../contexts/Application'
 
 export function useColor(tokenAddress, token) {
+  const tokenMap = useListedTokensMap()
   const [color, setColor] = useState('#2172E5')
-  if (tokenAddress) {
-    const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
-      tokenAddress
-    )}/logo.png`
+  if (tokenAddress && tokenMap) {
+    const path = tokenMap[tokenAddress]?.logoURI
     if (path) {
-      Vibrant.from(path).getPalette((err, palette) => {
+      Vibrant.from(path.replace('https://', 'https://cors-anywhere.')).getPalette((err, palette) => {
         if (palette && palette.Vibrant) {
           let detectedHex = palette.Vibrant.hex
           let AAscore = hex(detectedHex, '#FFF')

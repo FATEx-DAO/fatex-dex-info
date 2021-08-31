@@ -72,10 +72,10 @@ export default function Warning({ type, show, setShow, address }) {
                 fontWeight={500}
                 lineHeight={'145.23%'}
                 color={'#2172E5'}
-                href={'https://etherscan.io/address/' + address}
+                href={'https://explorer.harmony.one/address/' + address}
                 target="_blank"
               >
-                View {type === 'token' ? 'token' : 'pair'} contract on Etherscan
+                View {type === 'token' ? 'token' : 'pair'} contract on Explorer
               </Link>
             </Hover>
             <RowBetween style={{ marginTop: '20px' }}>
@@ -92,10 +92,10 @@ export default function Warning({ type, show, setShow, address }) {
                 fontWeight={500}
                 lineHeight={'145.23%'}
                 color={'#2172E5'}
-                href={'https://etherscan.io/address/' + address}
+                href={'https://explorer.harmony.one/address/' + address}
                 target="_blank"
               >
-                View {type === 'token' ? 'token' : 'pair'} contract on Etherscan
+                View {type === 'token' ? 'token' : 'pair'} contract on Explorer
               </Link>
             </Hover>
             <ButtonDark color={'#f82d3a'} style={{ minWidth: '140px' }} onClick={() => setShow(false)}>

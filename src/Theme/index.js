@@ -153,12 +153,8 @@ export const ThemedBackground = styled.div`
   max-width: 100vw !important;
   height: 200vh;
   mix-blend-mode: color;
-  background: ${({ theme }) => theme.bg1};
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  /* z-index: ; */
-
+    // background: ${({ theme }) => theme.bg1};
+    // background: ${({ background }) => background};
   transform: translateY(-110vh);
 `
 

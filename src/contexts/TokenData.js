@@ -11,7 +11,7 @@ import {
   PAIR_DATA,
 } from '../apollo/queries'
 
-import { useEthPrice } from './GlobalData'
+import { useOnePrice } from './GlobalData'
 
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -192,7 +192,7 @@ export default function Provider({ children }) {
   )
 }
 
-const getTopTokens = async (ethPrice, ethPriceOld) => {
+const getTopTokens = async (onePrice, onePriceOld) => {
   const utcCurrentTime = dayjs()
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').unix()
   const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').unix()
@@ -262,17 +262,17 @@ const getTopTokens = async (ethPrice, ethPriceOld) => {
             twoDayHistory?.txCount ?? 0
           )
 
-          const currentLiquidityUSD = data?.totalLiquidity * ethPrice * data?.derivedETH
-          const oldLiquidityUSD = oneDayHistory?.totalLiquidity * ethPriceOld * oneDayHistory?.derivedETH
+          const currentLiquidityUSD = data?.totalLiquidity * onePrice * data?.derivedETH
+          const oldLiquidityUSD = oneDayHistory?.totalLiquidity * onePriceOld * oneDayHistory?.derivedETH
 
           // percent changes
           const priceChangeUSD = getPercentChange(
-            data?.derivedETH * ethPrice,
-            oneDayHistory?.derivedETH ? oneDayHistory?.derivedETH * ethPriceOld : 0
+            data?.derivedETH * onePrice,
+            oneDayHistory?.derivedETH ? oneDayHistory?.derivedETH * onePriceOld : 0
           )
 
           // set data
-          data.priceUSD = data?.derivedETH * ethPrice
+          data.priceUSD = data?.derivedETH * onePrice
           data.totalLiquidityUSD = currentLiquidityUSD
           data.oneDayVolumeUSD = parseFloat(oneDayVolumeUSD)
           data.volumeChangeUSD = volumeChangeUSD
@@ -317,7 +317,7 @@ const getTopTokens = async (ethPrice, ethPriceOld) => {
   }
 }
 
-const getTokenData = async (address, ethPrice, ethPriceOld) => {
+const getTokenData = async (address, onePrice, onePriceOld) => {
   const utcCurrentTime = dayjs()
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').startOf('minute').unix()
   const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').startOf('minute').unix()
@@ -389,15 +389,15 @@ const getTokenData = async (address, ethPrice, ethPriceOld) => {
     )
 
     const priceChangeUSD = getPercentChange(
-      data?.derivedETH * ethPrice,
-      parseFloat(oneDayData?.derivedETH ?? 0) * ethPriceOld
+      data?.derivedETH * onePrice,
+      parseFloat(oneDayData?.derivedETH ?? 0) * onePriceOld
     )
 
-    const currentLiquidityUSD = data?.totalLiquidity * ethPrice * data?.derivedETH
-    const oldLiquidityUSD = oneDayData?.totalLiquidity * ethPriceOld * oneDayData?.derivedETH
+    const currentLiquidityUSD = data?.totalLiquidity * onePrice * data?.derivedETH
+    const oldLiquidityUSD = oneDayData?.totalLiquidity * onePriceOld * oneDayData?.derivedETH
 
     // set data
-    data.priceUSD = data?.derivedETH * ethPrice
+    data.priceUSD = data?.derivedETH * onePrice
     data.totalLiquidityUSD = currentLiquidityUSD
     data.oneDayVolumeUSD = oneDayVolumeUSD
     data.volumeChangeUSD = volumeChangeUSD
@@ -520,10 +520,10 @@ const getIntervalTokenData = async (tokenAddress, startTime, interval = 3600, la
 
     // go through eth usd prices and assign to original values array
     let index = 0
-    for (var brow in result) {
+    for (let brow in result) {
       let timestamp = brow.split('b')[1]
       if (timestamp) {
-        values[index].priceUSD = result[brow].ethPrice * values[index].derivedETH
+        values[index].priceUSD = result[brow]?.ethPrice * values[index].derivedETH
         index += 1
       }
     }
@@ -586,7 +586,6 @@ const getTokenChartData = async (tokenAddress) => {
     let timestamp = data[0] && data[0].date ? data[0].date : startTime
     let latestLiquidityUSD = data[0] && data[0].totalLiquidityUSD
     let latestPriceUSD = data[0] && data[0].priceUSD
-    let latestPairDatas = data[0] && data[0].mostLiquidPairs
     let index = 1
     while (timestamp < utcEndTime.startOf('minute').unix() - oneDay) {
       const nextDay = timestamp + oneDay
@@ -598,12 +597,10 @@ const getTokenChartData = async (tokenAddress) => {
           dailyVolumeUSD: 0,
           priceUSD: latestPriceUSD,
           totalLiquidityUSD: latestLiquidityUSD,
-          mostLiquidPairs: latestPairDatas,
         })
       } else {
         latestLiquidityUSD = dayIndexArray[index].totalLiquidityUSD
         latestPriceUSD = dayIndexArray[index].priceUSD
-        latestPairDatas = dayIndexArray[index].mostLiquidPairs
         index = index + 1
       }
       timestamp = nextDay
@@ -617,30 +614,30 @@ const getTokenChartData = async (tokenAddress) => {
 
 export function Updater() {
   const [, { updateTopTokens }] = useTokenDataContext()
-  const [ethPrice, ethPriceOld] = useEthPrice()
+  const [onePrice, onePriceOld] = useOnePrice()
   useEffect(() => {
     async function getData() {
       // get top pairs for overview list
-      let topTokens = await getTopTokens(ethPrice, ethPriceOld)
+      let topTokens = await getTopTokens(onePrice, onePriceOld)
       topTokens && updateTopTokens(topTokens)
     }
-    ethPrice && ethPriceOld && getData()
-  }, [ethPrice, ethPriceOld, updateTopTokens])
+    onePrice && onePriceOld && getData()
+  }, [onePrice, onePriceOld, updateTopTokens])
   return null
 }
 
 export function useTokenData(tokenAddress) {
   const [state, { update }] = useTokenDataContext()
-  const [ethPrice, ethPriceOld] = useEthPrice()
+  const [onePrice, onePriceOld] = useOnePrice()
   const tokenData = state?.[tokenAddress]
 
   useEffect(() => {
-    if (!tokenData && ethPrice && ethPriceOld && isAddress(tokenAddress)) {
-      getTokenData(tokenAddress, ethPrice, ethPriceOld).then((data) => {
+    if (!tokenData && onePrice && onePriceOld && isAddress(tokenAddress)) {
+      getTokenData(tokenAddress, onePrice, onePriceOld).then((data) => {
         update(tokenAddress, data)
       })
     }
-  }, [ethPrice, ethPriceOld, tokenAddress, tokenData, update])
+  }, [onePrice, onePriceOld, tokenAddress, tokenData, update])
 
   return tokenData || {}
 }

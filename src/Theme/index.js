@@ -73,7 +73,7 @@ const theme = (darkMode, color) => ({
   green1: '#27AE60',
   yellow1: '#FFE270',
   yellow2: '#F3841E',
-  blue1: '#2172E5',
+  blue1: darkMode ? '#FFFFFF' : '#000000',
 
   background: darkMode ? 'black' : `white`,
 })

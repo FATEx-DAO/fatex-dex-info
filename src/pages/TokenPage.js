@@ -36,6 +36,7 @@ import QuestionHelper from '../components/QuestionHelper'
 import Checkbox from '../components/Checkbox'
 import { shortenAddress } from '../utils'
 import theme from '../Theme'
+import { useDarkModeManager } from '../contexts/LocalStorage'
 
 const DashboardWrapper = styled.div`
   width: 100%;
@@ -124,12 +125,14 @@ function TokenPage({ address, history }) {
     txnChange,
   } = useTokenData(address)
 
+  const [darkMode] = useDarkModeManager()
+
   useEffect(() => {
     document.querySelector('body').scrollTo(0, 0)
   }, [])
 
   // detect color from token
-  const backgroundColor = useColor(id, symbol)
+  const backgroundColor = darkMode ? '#FFFFFF' : '#000000'
 
   const allPairs = useTokenPairs(address)
 
@@ -216,7 +219,7 @@ function TokenPage({ address, history }) {
 
   return (
     <PageWrapper>
-      <ThemedBackground backgroundColor={transparentize(0.6, backgroundColor)} />
+      <ThemedBackground backgroundColor={backgroundColor} />
       <Warning
         type={'token'}
         show={!dismissed && listedTokens && !listedTokens.includes(address)}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { Area, XAxis, YAxis, ResponsiveContainer, Tooltip, AreaChart, BarChart, Bar } from 'recharts'
 import { AutoRow, RowBetween, RowFixed } from '../Row'
 
@@ -19,6 +19,10 @@ import { useDarkModeManager } from '../../contexts/LocalStorage'
 const ChartWrapper = styled.div`
   height: 100%;
   min-height: 300px;
+
+  > div > div > div > div > ul > li {
+    color: #000000 !important;
+  }
 
   @media screen and (max-width: 600px) {
     min-height: 200px;

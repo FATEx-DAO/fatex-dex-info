@@ -28,7 +28,7 @@ export const stakingClient = new ApolloClient({
 
 export const blockClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://sushi.graph.t.hmny.io/subgraphs/name/sushiswap/harmony-blocks-fs',
+    uri: 'https://sushi.graph.t.hmny.io/subgraphs/name/sushiswap/harmony-blocks',
   }),
   cache: new InMemoryCache(),
 })

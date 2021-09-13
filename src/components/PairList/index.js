@@ -128,7 +128,7 @@ const FIELD_TO_VALUE = (field, useTracked) => {
 }
 
 const formatDataText = (value, trackedValue, supressWarning = false) => {
-  const showUntracked = value !== '$0' && !trackedValue & !supressWarning
+  const showUntracked = value !== '$0' && !trackedValue && !supressWarning
   return (
     <AutoColumn gap="2px" style={{ opacity: showUntracked ? '0.7' : '1' }}>
       <div style={{ textAlign: 'right' }}>{value}</div>

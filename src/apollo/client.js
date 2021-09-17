@@ -4,7 +4,7 @@ import { HttpLink } from 'apollo-link-http'
 
 export const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://sushi.graph.t.hmny.io/subgraphs/name/fatex-dao/fatex-dex',
+    uri: 'https://graph.t.hmny.io/subgraphs/name/fatex-dao/fatex-dex',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
@@ -12,7 +12,7 @@ export const client = new ApolloClient({
 
 export const healthClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://sushi.graph.t.hmny.io:8030/graphql',
+    uri: 'https://graph.t.hmny.io:8030/graphql',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,

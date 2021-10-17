@@ -28,7 +28,8 @@ export const stakingClient = new ApolloClient({
 
 export const blockClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://sushi.graph.t.hmny.io/subgraphs/name/sushiswap/harmony-blocks',
+    // uri: 'https://sushi.graph.t.hmny.io/subgraphs/name/sushiswap/harmony-blocks',
+    uri: 'https://graph.t.hmny.io/subgraphs/name/fatex-dao/harmony-blocks',
   }),
   cache: new InMemoryCache(),
 })

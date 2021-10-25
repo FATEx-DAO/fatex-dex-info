@@ -13,6 +13,13 @@ import { useSessionStart } from '../../contexts/Application'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 import Toggle from '../Toggle'
 import theme from '../../Theme'
+import TwitterLogo from '../../assets/twitter-logo.svg'
+import RedditLogo from '../../assets/reddit-logo.svg'
+import MediumLogo from '../../assets/medium-logo.svg'
+import TelegramLogo from '../../assets/telegram-logo.svg'
+import DiscordLogo from '../../assets/discord-logo.svg'
+import YouTubeLogo from '../../assets/youtube-logo.svg'
+import DiscourseLogo from '../../assets/discourse-logo.svg'
 
 const Wrapper = styled.div`
   height: ${({ isMobile }) => (isMobile ? 'initial' : '100vh')};
@@ -98,6 +105,27 @@ const PollingDot = styled.div`
   background-color: ${({ theme }) => theme.green1};
 `
 
+const SocialLinks = styled.div`
+  margin-top: 10px;
+  max-width: 75%;
+
+  a {
+    display: inline-block;
+    margin: 5px;
+
+    img,
+    svg {
+      filter: invert(${(props) => (props.isDark ? '1' : '0')});
+      width: 20px;
+      opacity: 0.6;
+
+      :hover {
+        opacity: 1;
+      }
+    }
+  }
+`
+
 function SideNav({ history }) {
   const below1080 = useMedia('(max-width: 1080px)')
 
@@ -163,40 +191,48 @@ function SideNav({ history }) {
           </AutoColumn>
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://fatex.io" target="_blank">
-                FATEx
+              <Link href="https://github.com/FATEx-DAO" target="_blank">
+                Code
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://fatexdao.gitbook.io/fatexdao" target="_blank">
-                Docs
+              <Link href="https://app.fatex.io" target="_blank">
+                FATExDEX
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://discord.gg/uA6xrmsRfu" target="_blank">
-                Discord
+              <Link href="https://gov.daodiscourse.fatex.io/categories" target="_blank">
+                DAO Forum
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://twitter.com/FATExDAO" target="_blank">
-                Twitter
+              <Link href="https://fatexdao.gitbook.io/fatexdao/" target="_blank">
+                Green Paper
               </Link>
             </HeaderText>
-            <HeaderText>
-              <Link href="https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg" target="_blank">
-                YouTube
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://www.reddit.com/r/FATExDAO" target="_blank">
-                Reddit
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://fatexdao.medium.com" target="_blank">
-                Medium
-              </Link>
-            </HeaderText>
+            <SocialLinks isDark={isDark}>
+              <a href={'https://www.twitter.com/FATExDAO'} target={'_blank'} rel="noreferrer">
+                <img src={TwitterLogo} alt={'twitter logo'} />
+              </a>
+              <a href={'https://www.reddit.com/r/FATExDAO'} target={'_blank'} rel="noreferrer">
+                <img src={RedditLogo} alt={'reddit logo'} />
+              </a>
+              <a href={'https://fatexdao.medium.com'} target={'_blank'} rel="noreferrer">
+                <img src={MediumLogo} alt={'medium logo'} />
+              </a>
+              <a href={'https://t.me/FATExDAO'} target={'_blank'} rel="noreferrer">
+                <img src={TelegramLogo} alt={'telegram logo'} />
+              </a>
+              <a href={'https://discord.gg/uA6xrmsRfu'} target={'_blank'} rel="noreferrer">
+                <img src={DiscordLogo} alt={'discord logo'} />
+              </a>
+              <a href={'https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg'} target={'_blank'} rel="noreferrer">
+                <img src={YouTubeLogo} alt={'youtube logo'} />
+              </a>
+              <a href={'https://gov.daodiscourse.fatex.io/categories'} target={'_blank'} rel="noreferrer">
+                <img src={DiscourseLogo} alt={'discourse logo'} />
+              </a>
+            </SocialLinks>
             <Toggle isActive={isDark} toggle={toggleDarkMode} />
           </AutoColumn>
           {!below1180 && (

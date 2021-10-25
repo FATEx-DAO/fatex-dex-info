@@ -72,12 +72,13 @@ const HeaderText = styled.div`
   font-weight: 500;
   display: inline-box;
   display: -webkit-inline-box;
-  opacity: 0.8;
-  :hover {
-    opacity: 1;
-  }
   a {
     color: ${({ theme }) => theme.text1};
+
+    opacity: 0.8;
+    :hover {
+      opacity: 1;
+    }
   }
 `
 
@@ -203,6 +204,11 @@ function SideNav({ history }) {
             <HeaderText>
               <Link href="https://gov.daodiscourse.fatex.io/categories" target="_blank">
                 DAO Forum
+              </Link>
+            </HeaderText>
+            <HeaderText>
+              <Link href="https://gov.harmony.one/#/fatexdao" target="_blank">
+                DAO Voting
               </Link>
             </HeaderText>
             <HeaderText>

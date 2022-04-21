@@ -536,13 +536,13 @@ async function getAllTokensOnUniswap() {
  */
 export function useGlobalData() {
   const [state, { update, updateAllPairsInUniswap, updateAllTokensInUniswap }] = useGlobalDataContext()
-  const [onePrice, oldOnePrice] = useOnePrice()
+  const [ethPrice, oldEthPrice] = useEthPrice()
 
   const data = state?.globalData
 
   useEffect(() => {
     async function fetchData() {
-      let globalData = await getGlobalData(onePrice, oldOnePrice)
+      let globalData = await getGlobalData(ethPrice, oldEthPrice)
       globalData && update(globalData)
 
       let allPairs = await getAllPairsOnUniswap()
@@ -551,10 +551,10 @@ export function useGlobalData() {
       let allTokens = await getAllTokensOnUniswap()
       updateAllTokensInUniswap(allTokens)
     }
-    if (!data && onePrice && oldOnePrice) {
+    if (!data && ethPrice && oldEthPrice) {
       fetchData()
     }
-  }, [onePrice, oldOnePrice, update, data, updateAllPairsInUniswap, updateAllTokensInUniswap])
+  }, [ethPrice, oldEthPrice, update, data, updateAllPairsInUniswap, updateAllTokensInUniswap])
 
   return data || {}
 }
@@ -613,7 +613,7 @@ export function useGlobalTransactions() {
   return transactions
 }
 
-export function useOnePrice() {
+export function useEthPrice() {
   const [state, { updateEthPrice }] = useGlobalDataContext()
   const ethPrice = state?.[ETH_PRICE_KEY]
   const ethPriceOld = state?.['oneDayPrice']

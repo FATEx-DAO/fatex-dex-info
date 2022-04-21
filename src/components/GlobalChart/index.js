@@ -40,7 +40,7 @@ const GlobalChart = ({ display }) => {
   //   oneWeekVolume,
   //   weeklyVolumeChange,
   // } = useGlobalData()
-  const foo = useGlobalData()
+  // const foo = useGlobalData()
   // console.log('foo', foo)
 
   const {

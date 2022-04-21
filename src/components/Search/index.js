@@ -472,10 +472,10 @@ export const Search = ({ small = false }) => {
               : below410
               ? 'Search...'
               : below470
-              ? 'Search FATExDEX...'
+              ? 'Search FATExFI...'
               : below700
               ? 'Search pairs and tokens...'
-              : 'Search FATExDEX pairs and tokens...'
+              : 'Search FATExFI pairs and tokens...'
           }
           value={value}
           onChange={(e) => {

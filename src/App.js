@@ -18,7 +18,6 @@ import AccountLookup from './pages/AccountLookup'
 import { PAIR_BLACKLIST } from './constants'
 import LocalLoader from './components/LocalLoader'
 import { useLatestBlocks } from './contexts/Application'
-import GoogleAnalyticsReporter from './components/analytics/GoogleAnalyticsReporter'
 import Footer from './components/Footer'
 
 const AppWrapper = styled.div`
@@ -94,13 +93,15 @@ const LayoutWrapper = ({ children, savedOpen, setSavedOpen }) => {
   )
 }
 
-const BLOCK_DIFFERENCE_THRESHOLD = 30
+const BLOCK_DIFFERENCE_THRESHOLD = 60
 
 function App() {
   const [savedOpen, setSavedOpen] = useState(false)
 
   const globalData = useGlobalData()
   const globalChartData = useGlobalChartData()
+  console.log('globalData', globalData)
+  console.log('globalChartData', globalChartData)
   const [latestBlock, headBlock] = useLatestBlocks()
 
   // show warning
@@ -112,7 +113,7 @@ function App() {
         {showWarning && (
           <WarningWrapper>
             <WarningBanner>
-              {`Warning: The data on this site has only synced to Harmony block ${latestBlock} (out of ${headBlock}). Please check back soon.`}
+              {`Warning: The data on this site has only synced to Polygon block ${latestBlock} (out of ${headBlock}). Please check back soon.`}
             </WarningBanner>
           </WarningWrapper>
         )}

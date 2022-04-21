@@ -77,7 +77,7 @@ export default function Title() {
         <RowFixed>
           {!below1080 ? (
             <LogoText id="link" onClick={() => history.push('/')}>
-              FATEx<Tiny>DAO</Tiny>
+              FATEx<Tiny>FI</Tiny>
             </LogoText>
           ) : (
             <LogoImage>

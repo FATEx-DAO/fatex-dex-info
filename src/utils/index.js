@@ -303,10 +303,10 @@ export const setThemeColor = (theme) => document.documentElement.style.setProper
 export const Big = (number) => new BigNumber(number)
 
 export const urls = {
-  showTransaction: (tx) => `https://explorer.harmony.one/tx/${tx}/`,
-  showAddress: (address) => `https://explorer.harmony.one/address/${address}/`,
-  showToken: (address) => `https://explorer.harmony.one/address/${address}/`,
-  showBlock: (block) => `https://explorer.harmony.one/block/${block}/`,
+  showTransaction: (tx) => `https://polygonscan.com/tx/${tx}/`,
+  showAddress: (address) => `https://polygonscan.com/address/${address}/`,
+  showToken: (address) => `https://polygonscan.com/address/${address}/`,
+  showBlock: (block) => `https://polygonscan.com/block/${block}/`,
 }
 
 export const formatTime = (unix) => {
@@ -367,8 +367,8 @@ export const formattedNum = (number, usd = false, acceptNegatives = false) => {
     return 0
   }
 
-  if (num < 0.0001 && num > 0) {
-    return usd ? '< $0.0001' : '< 0.0001'
+  if (num < 0.000001 && num > 0) {
+    return usd ? '< $0.000001' : '< 0.000001'
   }
 
   if (num > 1000) {

@@ -11,8 +11,8 @@
     }
   ],
   "orientation": "portrait",
-  "name": "FATExDAO",
-  "short_name": "FATExDAO",
+  "name": "FATExFI",
+  "short_name": "FATExFI",
   "start_url": ".",
   "theme_color": "#00a17e"
 }

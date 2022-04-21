@@ -23,7 +23,7 @@ import { useMedia } from 'react-use'
 import DoubleTokenLogo from '../components/DoubleLogo'
 import TokenLogo from '../components/TokenLogo'
 import { Hover } from '../components'
-import { useOnePrice } from '../contexts/GlobalData'
+import { useEthPrice } from '../contexts/GlobalData'
 import Warning from '../components/Warning'
 import { usePathDismissed, useSavedPairs } from '../contexts/LocalStorage'
 
@@ -158,7 +158,7 @@ function PairPage({ pairAddress, history }) {
       : '-'
 
   // token data for usd
-  const [ethPrice] = useOnePrice()
+  const [ethPrice] = useEthPrice()
   const token0USD =
     token0?.derivedETH && ethPrice ? formattedNum(parseFloat(token0.derivedETH) * parseFloat(ethPrice), true) : ''
 
@@ -477,7 +477,7 @@ function PairPage({ pairAddress, history }) {
                       <CopyHelper toCopy={token1?.id} />
                     </AutoRow>
                   </Column>
-                  <Link color={backgroundColor} external href={'https://explorer.harmony.one/address/' + pairAddress}>
+                  <Link color={backgroundColor} external href={'https://polygonscan.com/address/' + pairAddress}>
                     <ButtonLight color={theme.text1}>View on Explorer ↗</ButtonLight>
                   </Link>
                 </TokenDetailsLayout>

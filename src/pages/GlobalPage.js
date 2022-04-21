@@ -66,7 +66,7 @@ function GlobalPage() {
       <ContentWrapper>
         <div>
           <AutoColumn gap="24px" style={{ paddingBottom: below800 ? '0' : '24px' }}>
-            <TYPE.largeHeader>{below800 ? 'FATExDEX Analytics' : 'FATExDEX Analytics'}</TYPE.largeHeader>
+            <TYPE.largeHeader>{below800 ? 'FATExFI Analytics' : 'FATExFI Analytics'}</TYPE.largeHeader>
             <Search />
             <GlobalStats />
           </AutoColumn>

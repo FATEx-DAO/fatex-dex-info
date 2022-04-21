@@ -11,7 +11,7 @@ import {
   PAIR_DATA,
 } from '../apollo/queries'
 
-import { useOnePrice } from './GlobalData'
+import { useEthPrice } from './GlobalData'
 
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -614,7 +614,7 @@ const getTokenChartData = async (tokenAddress) => {
 
 export function Updater() {
   const [, { updateTopTokens }] = useTokenDataContext()
-  const [onePrice, onePriceOld] = useOnePrice()
+  const [onePrice, onePriceOld] = useEthPrice()
   useEffect(() => {
     async function getData() {
       // get top pairs for overview list
@@ -628,7 +628,7 @@ export function Updater() {
 
 export function useTokenData(tokenAddress) {
   const [state, { update }] = useTokenDataContext()
-  const [onePrice, onePriceOld] = useOnePrice()
+  const [onePrice, onePriceOld] = useEthPrice()
   const tokenData = state?.[tokenAddress]
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { RowFixed, RowBetween } from '../Row'
 import { useMedia } from 'react-use'
-import { useGlobalData, useOnePrice } from '../../contexts/GlobalData'
+import { useGlobalData, useEthPrice } from '../../contexts/GlobalData'
 import { formattedNum, localNumber } from '../../utils'
 
 import UniPrice from '../UniPrice'
@@ -28,8 +28,8 @@ export default function GlobalStats() {
   const [showPriceCard, setShowPriceCard] = useState(false)
 
   const { oneDayVolumeUSD, oneDayTxns, pairCount } = useGlobalData()
-  const [onePrice] = useOnePrice()
-  const formattedOnePrice = onePrice ? formattedNum(onePrice, true) : '-'
+  const [ethPrice] = useEthPrice()
+  const formattedOnePrice = ethPrice ? formattedNum(ethPrice, true) : '-'
   const oneDayFees = oneDayVolumeUSD ? formattedNum(oneDayVolumeUSD * 0.003, true) : ''
 
   return (

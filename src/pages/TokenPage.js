@@ -209,7 +209,7 @@ function TokenPage({ address, history }) {
             </TYPE.light>
             <Link
               external={true}
-              href={'https://explorer.harmony.one/address/' + address}
+              href={'https://polygonscan.com/address/' + address}
             >{`More about ${shortenAddress(address)}`}</Link>
           </AutoColumn>
         </BlockedMessageWrapper>
@@ -236,7 +236,7 @@ function TokenPage({ address, history }) {
               style={{ width: 'fit-content' }}
               color={theme.text1}
               external
-              href={'https://explorer.harmony.one/address/' + address}
+              href={'https://polygonscan.com/address/' + address}
             >
               <Text style={{ marginLeft: '.15rem' }} fontSize={'14px'} fontWeight={400}>
                 ({address.slice(0, 8) + '...' + address.slice(36, 42)})
@@ -448,7 +448,7 @@ function TokenPage({ address, history }) {
                       <CopyHelper toCopy={address} />
                     </AutoRow>
                   </Column>
-                  <Link external href={'https://explorer.harmony.one/address/' + address}>
+                  <Link external href={'https://polygonscan.com/address/' + address}>
                     <ButtonLight color={theme.text1}>View on Explorer ↗</ButtonLight>
                   </Link>
                 </TokenDetailsLayout>

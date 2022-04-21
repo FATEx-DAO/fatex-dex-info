@@ -7,7 +7,7 @@ const Attribution = () => (
     </a>{' '}
     |{' '}
     <a href="https://fatex.io" rel="noopener noreferrer" target="_blank">
-      FATExDEX
+      FATExFI
     </a>{' '}
     |{' '}
     <a href="https://gifer.com/en/1Atv" rel="noopener noreferrer" target="_blank">

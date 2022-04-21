@@ -38,9 +38,9 @@ const FooterWrapper = styled.div`
 
 const Footer = () => (
   <FooterWrapper>
-    © FATExDAO 2021
+    © FATExFI 2021
     <br />
-    "FATExDAO" and the FATExDAO logo are unregistered trademarks owned by the FATExDAO. Any unauthorized use is
+    "FATExFI" and the FATExFI logo are unregistered trademarks owned by the FATExFI. Any unauthorized use is
     expressly prohibited.
   </FooterWrapper>
 )

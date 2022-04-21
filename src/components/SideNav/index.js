@@ -7,12 +7,20 @@ import { useMedia } from 'react-use'
 import { transparentize } from 'polished'
 import { TYPE } from '../../Theme'
 import { withRouter } from 'react-router-dom'
-import { TrendingUp, List, PieChart, Disc } from 'react-feather'
+import { TrendingUp, List, PieChart, Disc, Code, Book } from 'react-feather'
 import Link from '../Link'
 import { useSessionStart } from '../../contexts/Application'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 import Toggle from '../Toggle'
 import theme from '../../Theme'
+import TwitterLogo from '../../assets/twitter-logo.svg'
+import RedditLogo from '../../assets/reddit-logo.svg'
+import MediumLogo from '../../assets/medium-logo.svg'
+import TelegramLogo from '../../assets/telegram-logo.svg'
+import DiscordLogo from '../../assets/discord-logo.svg'
+import YouTubeLogo from '../../assets/youtube-logo.svg'
+import DiscourseLogo from '../../assets/discourse-logo.svg'
+import LinkedinLogo from '../../assets/linkedin-logo.svg'
 
 const Wrapper = styled.div`
   height: ${({ isMobile }) => (isMobile ? 'initial' : '100vh')};
@@ -65,12 +73,13 @@ const HeaderText = styled.div`
   font-weight: 500;
   display: inline-box;
   display: -webkit-inline-box;
-  opacity: 0.8;
-  :hover {
-    opacity: 1;
-  }
   a {
     color: ${({ theme }) => theme.text1};
+
+    opacity: 0.8;
+    :hover {
+      opacity: 1;
+    }
   }
 `
 
@@ -96,6 +105,27 @@ const PollingDot = styled.div`
   margin-top: 3px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.green1};
+`
+
+const SocialLinks = styled.div`
+  margin-top: 10px;
+  max-width: 75%;
+
+  a {
+    display: inline-block;
+    margin: 5px;
+
+    img,
+    svg {
+      filter: invert(${(props) => (props.isDark ? '1' : '0')});
+      width: 20px;
+      opacity: 0.6;
+
+      :hover {
+        opacity: 1;
+      }
+    }
+  }
 `
 
 function SideNav({ history }) {
@@ -163,40 +193,58 @@ function SideNav({ history }) {
           </AutoColumn>
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://fatex.io" target="_blank">
-                FATEx
+              <Link href="https://github.com/FATEx-DAO" target="_blank">
+                Code
+                {/*<Code size={14} />*/}
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://fatexdao.gitbook.io/fatexdao" target="_blank">
-                Docs
+              <Link href="https://app.fatex.io" target="_blank">
+                FATExDEX
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://discord.gg/uA6xrmsRfu" target="_blank">
-                Discord
+              <Link href="https://gov.daodiscourse.fatex.io/categories" target="_blank">
+                DAO Forum
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://twitter.com/FATExDAO" target="_blank">
-                Twitter
+              <Link href="https://gov.harmony.one/#/fatexdao" target="_blank">
+                DAO Voting
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg" target="_blank">
-                YouTube
+              <Link href="https://fatexdao.gitbook.io/fatexdao/" target="_blank">
+                Green Paper
+                {/*<Book size={14} />*/}
               </Link>
             </HeaderText>
-            <HeaderText>
-              <Link href="https://www.reddit.com/r/FATExDAO" target="_blank">
-                Reddit
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://fatexdao.medium.com" target="_blank">
-                Medium
-              </Link>
-            </HeaderText>
+            <SocialLinks isDark={isDark}>
+              <a href={'https://www.twitter.com/FATExDAO'} target={'_blank'} rel="noreferrer">
+                <img src={TwitterLogo} alt={'twitter logo'} />
+              </a>
+              <a href={'https://www.reddit.com/r/FATEx'} target={'_blank'} rel="noreferrer">
+                <img src={RedditLogo} alt={'reddit logo'} />
+              </a>
+              <a href={'https://fatexdao.medium.com'} target={'_blank'} rel="noreferrer">
+                <img src={MediumLogo} alt={'medium logo'} />
+              </a>
+              <a href={'https://t.me/FATExDAO'} target={'_blank'} rel="noreferrer">
+                <img src={TelegramLogo} alt={'telegram logo'} />
+              </a>
+              <a href={'https://discord.gg/uA6xrmsRfu'} target={'_blank'} rel="noreferrer">
+                <img src={DiscordLogo} alt={'discord logo'} />
+              </a>
+              <a href={'https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg'} target={'_blank'} rel="noreferrer">
+                <img src={YouTubeLogo} alt={'youtube logo'} />
+              </a>
+              <a href={'https://gov.daodiscourse.fatex.io/categories'} target={'_blank'} rel="noreferrer">
+                <img src={DiscourseLogo} alt={'discourse logo'} />
+              </a>
+              <a href={'https://www.linkedin.com/company/fatexdao'} target={'_blank'} rel="noreferrer">
+                <img src={LinkedinLogo} alt={'discourse logo'} />
+              </a>
+            </SocialLinks>
             <Toggle isActive={isDark} toggle={toggleDarkMode} />
           </AutoColumn>
           {!below1180 && (

@@ -268,9 +268,9 @@ function PairPage({ pairAddress, history }) {
                     <ButtonLight color={theme.text1}>+ Add Liquidity</ButtonLight>
                   </Link>
                   <Link external href={getSwapLink(token0?.id, token1?.id)}>
-                    <ButtonDark ml={!below1080 && '.5rem'} mr={below1080 && '.5rem'} color={theme.text1}>
+                    <ButtonLight ml={!below1080 && '.5rem'} mr={below1080 && '.5rem'} color={theme.text1}>
                       Trade
-                    </ButtonDark>
+                    </ButtonLight>
                   </Link>
                 </RowFixed>
               </div>

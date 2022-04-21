@@ -32,15 +32,15 @@ export default function Toggle({ isActive, toggle }: ToggleProps) {
   return (
     <StyledToggle onClick={toggle}>
       <span>
-        <IconWrapper isActive={!isActive}>
-          <Sun size={20} />
-        </IconWrapper>
-      </span>
-      <span style={{ padding: '0 .5rem' }}>{' / '}</span>
-      <span>
-        <IconWrapper isActive={isActive}>
-          <Moon size={20} />
-        </IconWrapper>
+        {isActive ? (
+          <IconWrapper isActive={true}>
+            <Sun size={20} />
+          </IconWrapper>
+        ) : (
+          <IconWrapper isActive={true}>
+            <Moon size={20} />
+          </IconWrapper>
+        )}
       </span>
     </StyledToggle>
   )

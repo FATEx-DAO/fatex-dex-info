@@ -292,9 +292,9 @@ function TokenPage({ address, history }) {
                     <ButtonLight color={theme.text1}>+ Add Liquidity</ButtonLight>
                   </Link>
                   <Link href={getSwapLink(address)} target="_blank">
-                    <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={theme.text1}>
+                    <ButtonLight ml={'.5rem'} mr={below1080 && '.5rem'} color={theme.text1}>
                       Trade
-                    </ButtonDark>
+                    </ButtonLight>
                   </Link>
                 </RowFixed>
               </span>

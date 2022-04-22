@@ -100,8 +100,6 @@ function App() {
 
   const globalData = useGlobalData()
   const globalChartData = useGlobalChartData()
-  console.log('globalData', globalData)
-  console.log('globalChartData', globalChartData)
   const [latestBlock, headBlock] = useLatestBlocks()
 
   // show warning

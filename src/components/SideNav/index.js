@@ -220,28 +220,32 @@ function SideNav({ history }) {
               </Link>
             </HeaderText>
             <SocialLinks isDark={isDark}>
-              <a href={'https://www.twitter.com/FATExDAO'} target={'_blank'} rel="noreferrer">
+              <a href={'https://www.twitter.com/FATExDAO'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={TwitterLogo} alt={'twitter logo'} />
               </a>
-              <a href={'https://www.reddit.com/r/FATEx'} target={'_blank'} rel="noreferrer">
+              <a href={'https://www.reddit.com/r/FATEx'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={RedditLogo} alt={'reddit logo'} />
               </a>
-              <a href={'https://fatexdao.medium.com'} target={'_blank'} rel="noreferrer">
+              <a href={'https://fatexdao.medium.com'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={MediumLogo} alt={'medium logo'} />
               </a>
-              <a href={'https://t.me/FATExDAO'} target={'_blank'} rel="noreferrer">
+              <a href={'https://t.me/FATExDAO'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={TelegramLogo} alt={'telegram logo'} />
               </a>
-              <a href={'https://discord.gg/uA6xrmsRfu'} target={'_blank'} rel="noreferrer">
+              <a href={'https://discord.gg/uA6xrmsRfu'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={DiscordLogo} alt={'discord logo'} />
               </a>
-              <a href={'https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg'} target={'_blank'} rel="noreferrer">
+              <a
+                href={'https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg'}
+                target={'_blank'}
+                rel={'noopener noreferrer'}
+              >
                 <img src={YouTubeLogo} alt={'youtube logo'} />
               </a>
-              <a href={'https://gov.daodiscourse.fatex.io/categories'} target={'_blank'} rel="noreferrer">
+              <a href={'https://gov.daodiscourse.fatex.io/categories'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={DiscourseLogo} alt={'discourse logo'} />
               </a>
-              <a href={'https://www.linkedin.com/company/fatexdao'} target={'_blank'} rel="noreferrer">
+              <a href={'https://www.linkedin.com/company/fatexdao'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={LinkedinLogo} alt={'discourse logo'} />
               </a>
             </SocialLinks>

@@ -38,9 +38,9 @@ const FooterWrapper = styled.div`
 
 const Footer = () => (
   <FooterWrapper>
-    © FATExFI 2021
+    © FATExFi {new Date().getFullYear()}
     <br />
-    "FATExFI" and the FATExFI logo are unregistered trademarks owned by the FATExFI. Any unauthorized use is
+    &quot;FATExFi&quot; and the FATExFi logo are unregistered trademarks owned by the FATExFi. Any unauthorized use is
     expressly prohibited.
   </FooterWrapper>
 )

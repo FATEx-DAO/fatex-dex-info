@@ -627,7 +627,7 @@ export function usePairChartData(pairAddress) {
 }
 
 /**
- * Get list of all pairs in FATExFI
+ * Get list of all pairs in FATExFi
  */
 export function useAllPairData() {
   const [state] = usePairDataContext()

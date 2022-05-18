@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "fatex-dex-info",
+    "site": "fatex-fi-info",
     "public": "build",
     "ignore": [
       "firebase.json",

@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import Link from '../Link'
 
 const links = [
-  { url: 'https://fatex.io', text: 'About' },
+  { url: 'https://fatexfi.io', text: 'About' },
   { url: 'https://fatexdao.gitbook.io/fatexdao', text: 'Docs' },
   { url: 'https://github.com/FATEx-DAO', text: 'Code' },
 ]

@@ -6,7 +6,7 @@ const Attribution = () => (
       Github
     </a>{' '}
     |{' '}
-    <a href="https://fatex.io" rel="noopener noreferrer" target="_blank">
+    <a href="https://fatexfi.io" rel="noopener noreferrer" target="_blank">
       FATExFi
     </a>{' '}
     |{' '}

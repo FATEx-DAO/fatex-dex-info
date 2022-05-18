@@ -199,13 +199,13 @@ function SideNav({ history }) {
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://app.fatex.io" target="_blank">
+              <Link href="https://app.fatexfi.io" target="_blank">
                 DApp
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://snapshot.org/#/fatexdao.eth" target="_blank">
-                DAO Voting
+              <Link href="https://linktr.ee/fatexdao" target="_blank">
+                DAO Links
               </Link>
             </HeaderText>
             <HeaderText>

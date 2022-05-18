@@ -200,16 +200,11 @@ function SideNav({ history }) {
             </HeaderText>
             <HeaderText>
               <Link href="https://app.fatex.io" target="_blank">
-                FATExDEX
+                DApp
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://gov.daodiscourse.fatex.io/categories" target="_blank">
-                DAO Forum
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://gov.harmony.one/#/fatexdao" target="_blank">
+              <Link href="https://snapshot.org/#/fatexdao.eth" target="_blank">
                 DAO Voting
               </Link>
             </HeaderText>
@@ -241,9 +236,6 @@ function SideNav({ history }) {
                 rel={'noopener noreferrer'}
               >
                 <img src={YouTubeLogo} alt={'youtube logo'} />
-              </a>
-              <a href={'https://gov.daodiscourse.fatex.io/categories'} target={'_blank'} rel={'noopener noreferrer'}>
-                <img src={DiscourseLogo} alt={'discourse logo'} />
               </a>
               <a href={'https://www.linkedin.com/company/fatexdao'} target={'_blank'} rel={'noopener noreferrer'}>
                 <img src={LinkedinLogo} alt={'discourse logo'} />

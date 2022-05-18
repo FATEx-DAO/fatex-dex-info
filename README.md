@@ -4,7 +4,7 @@
 [![Deploy](https://github.com/FATEx-DAO/fatex-dex-info/workflows/Deploy/badge.svg)](https://github.com/FATEx-DAO/fatex-dex-info/actions?query=workflow%3ADeploy)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-Analytics site for the [FATExDEX](https://fatex.io).
+Analytics site for the [FATExFi](https://fatex.io).
 
 ### To Start Development
 

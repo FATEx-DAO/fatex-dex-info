@@ -2,6 +2,8 @@ export const FACTORY_ADDRESS = '0x937e0c67d21Df99eaEa0e6a1055A5b783291DC8f'
 
 export const BUNDLE_ID = '1'
 
+export const FATE_USDC_ID = '0x69c894dce6fa2e3b89d3111d29167f0484ac0b2a'
+
 export const timeframeOptions = {
   WEEK: '1 week',
   MONTH: '1 month',

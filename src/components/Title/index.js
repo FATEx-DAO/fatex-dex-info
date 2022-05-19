@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Flex } from 'rebass'
-import Link from '../Link'
 import { RowFixed } from '../Row'
 import Logo from '../../assets/fatex-logo.png'
 
@@ -19,12 +18,12 @@ const TitleWrapper = styled.div`
   }
 `
 
-const UniIcon = styled(Link)`
-  transition: transform 0.3s ease;
-  :hover {
-    transform: rotate(-5deg);
-  }
-`
+// const UniIcon = styled(Link)`
+//   transition: transform 0.3s ease;
+//   :hover {
+//     transform: rotate(-5deg);
+//   }
+// `
 
 const Option = styled.div`
   font-weight: 500;

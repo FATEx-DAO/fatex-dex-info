@@ -4,10 +4,9 @@ import { AutoColumn } from '../Column'
 import Title from '../Title'
 import { BasicLink } from '../Link'
 import { useMedia } from 'react-use'
-import { transparentize } from 'polished'
 import { TYPE } from '../../Theme'
 import { withRouter } from 'react-router-dom'
-import { TrendingUp, List, PieChart, Disc, Code, Book } from 'react-feather'
+import { TrendingUp, List, PieChart, Disc } from 'react-feather'
 import Link from '../Link'
 import { useSessionStart } from '../../contexts/Application'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
@@ -19,7 +18,6 @@ import MediumLogo from '../../assets/medium-logo.svg'
 import TelegramLogo from '../../assets/telegram-logo.svg'
 import DiscordLogo from '../../assets/discord-logo.svg'
 import YouTubeLogo from '../../assets/youtube-logo.svg'
-import DiscourseLogo from '../../assets/discourse-logo.svg'
 import LinkedinLogo from '../../assets/linkedin-logo.svg'
 
 const Wrapper = styled.div`
@@ -28,7 +26,7 @@ const Wrapper = styled.div`
   color: ${({ theme }) => theme.text1};
   padding: 0.5rem 0.5rem 0.5rem 0.75rem;
   position: sticky;
-  top: 0px;
+  top: 0;
   z-index: 9999999;
   box-sizing: border-box;
   /* background-color: #1b1c22; */
@@ -215,31 +213,27 @@ function SideNav({ history }) {
               </Link>
             </HeaderText>
             <SocialLinks isDark={isDark}>
-              <a href={'https://www.twitter.com/FATExDAO'} target={'_blank'} rel={'noopener noreferrer'}>
-                <img src={TwitterLogo} alt={'twitter logo'} />
-              </a>
-              <a href={'https://www.reddit.com/r/FATEx'} target={'_blank'} rel={'noopener noreferrer'}>
-                <img src={RedditLogo} alt={'reddit logo'} />
-              </a>
-              <a href={'https://fatexdao.medium.com'} target={'_blank'} rel={'noopener noreferrer'}>
-                <img src={MediumLogo} alt={'medium logo'} />
-              </a>
-              <a href={'https://t.me/FATExDAO'} target={'_blank'} rel={'noopener noreferrer'}>
-                <img src={TelegramLogo} alt={'telegram logo'} />
-              </a>
-              <a href={'https://discord.gg/uA6xrmsRfu'} target={'_blank'} rel={'noopener noreferrer'}>
-                <img src={DiscordLogo} alt={'discord logo'} />
-              </a>
-              <a
-                href={'https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg'}
-                target={'_blank'}
-                rel={'noopener noreferrer'}
-              >
-                <img src={YouTubeLogo} alt={'youtube logo'} />
-              </a>
-              <a href={'https://www.linkedin.com/company/fatexdao'} target={'_blank'} rel={'noopener noreferrer'}>
-                <img src={LinkedinLogo} alt={'discourse logo'} />
-              </a>
+              <Link href={'https://www.twitter.com/FATExDAO'} external={true}>
+                <img src={TwitterLogo} alt={'Twitter logo'} />
+              </Link>
+              <Link href={'https://www.reddit.com/r/FATEx'} external={true}>
+                <img src={RedditLogo} alt={'Reddit logo'} />
+              </Link>
+              <Link href={'https://fatexdao.medium.com'} external={true}>
+                <img src={MediumLogo} alt={'Medium logo'} />
+              </Link>
+              <Link href={'https://t.me/FATExDAO'} external={true}>
+                <img src={TelegramLogo} alt={'Telegram logo'} />
+              </Link>
+              <Link href={'https://discord.gg/uA6xrmsRfu'} external={true}>
+                <img src={DiscordLogo} alt={'Discord logo'} />
+              </Link>
+              <Link href={'https://youtube.com/channel/UCvD3ItDf063xc_I4412wXCg'} external={true}>
+                <img src={YouTubeLogo} alt={'YouTube logo'} />
+              </Link>
+              <Link href={'https://www.linkedin.com/company/fatexdao'} external={true}>
+                <img src={LinkedinLogo} alt={'LinkedIn logo'} />
+              </Link>
             </SocialLinks>
             <Toggle isActive={isDark} toggle={toggleDarkMode} />
           </AutoColumn>

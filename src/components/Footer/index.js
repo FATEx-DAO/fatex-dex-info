@@ -1,21 +1,20 @@
 import React from 'react'
-import { Flex } from 'rebass'
 
 import styled from 'styled-components'
 
-import Link from '../Link'
-
-const links = [
-  { url: 'https://fatexfi.io', text: 'About' },
-  { url: 'https://fatexdao.gitbook.io/fatexdao', text: 'Docs' },
-  { url: 'https://github.com/FATEx-DAO', text: 'Code' },
-]
-
-const FooterLink = ({ children, ...rest }) => (
-  <Link external color="uniswappink" fontWeight={500} fontSize={12} mr={'8px'} {...rest}>
-    {children}
-  </Link>
-)
+// import Link from '../Link'
+//
+// const links = [
+//   { url: 'https://fatexfi.io', text: 'About' },
+//   { url: 'https://fatexdao.gitbook.io/fatexdao', text: 'Docs' },
+//   { url: 'https://github.com/FATEx-DAO', text: 'Code' },
+// ]
+//
+// const FooterLink = ({ children, ...rest }) => (
+//   <Link external color="uniswappink" fontWeight={500} fontSize={12} mr={'8px'} {...rest}>
+//     {children}
+//   </Link>
+// )
 
 const FooterWrapper = styled.div`
   width: calc(100% - 324px);

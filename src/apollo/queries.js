@@ -1,5 +1,5 @@
 import gql from 'graphql-tag'
-import { FACTORY_ADDRESS, BUNDLE_ID } from '../constants'
+import { FACTORY_ADDRESS, BUNDLE_ID, FATE_USDC_ID } from '../constants'
 
 export const SUBGRAPH_HEALTH = gql`
   query health {
@@ -160,6 +160,29 @@ export const ETH_PRICE = (block) => {
       bundles(where: { id: ${BUNDLE_ID} }) {
         id
         ethPrice
+      }
+    }
+  `
+  return gql(queryString)
+}
+
+/**
+ * Gets the current price  of FATE, 24 hour price, and % change between them
+ */
+export const FATE_PRICE = (block) => {
+  const queryString = block
+    ? `
+    query fateUsdcPrice {
+      pairs(where: { id: "${FATE_USDC_ID}" } block: {number: ${block}}) {
+        id
+        token1Price
+      }
+    }
+  `
+    : ` query fateUsdcPrice {
+      pairs(where: { id: "${FATE_USDC_ID}" }) {
+        id
+        token1Price
       }
     }
   `

@@ -17,7 +17,7 @@ import {
   ETH_PRICE,
   ALL_PAIRS,
   ALL_TOKENS,
-  TOP_LPS_PER_PAIRS,
+  TOP_LPS_PER_PAIRS, FATE_PRICE
 } from '../apollo/queries'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import { useAllPairData } from './PairData'
@@ -25,7 +25,9 @@ const UPDATE = 'UPDATE'
 const UPDATE_TXNS = 'UPDATE_TXNS'
 const UPDATE_CHART = 'UPDATE_CHART'
 const UPDATE_ETH_PRICE = 'UPDATE_ETH_PRICE'
+const UPDATE_FATE_PRICE = 'UPDATE_FATE_PRICE'
 const ETH_PRICE_KEY = 'ETH_PRICE_KEY'
+const FATE_PRICE_KEY = 'FATE_PRICE_KEY'
 const UPDATE_ALL_PAIRS_IN_UNISWAP = 'UPDAUPDATE_ALL_PAIRS_IN_UNISWAPTE_TOP_PAIRS'
 const UPDATE_ALL_TOKENS_IN_UNISWAP = 'UPDATE_ALL_TOKENS_IN_UNISWAP'
 const UPDATE_TOP_LPS = 'UPDATE_TOP_LPS'
@@ -67,11 +69,20 @@ function reducer(state, { type, payload }) {
       }
     }
     case UPDATE_ETH_PRICE: {
-      const { ethPrice, oneDayPrice, ethPriceChange } = payload
+      const { ethPrice, ethOneDayPrice, ethPriceChange } = payload
       return {
         [ETH_PRICE_KEY]: ethPrice,
-        oneDayPrice,
+        ethOneDayPrice,
         ethPriceChange,
+      }
+    }
+    case UPDATE_FATE_PRICE: {
+      const { fatePrice, fateOneDayPrice, fatePriceChange } = payload
+      return {
+        [FATE_PRICE_KEY]: fatePrice,
+        fateOneDayPrice,
+        fatePriceChange,
+        ...state,
       }
     }
 
@@ -134,13 +145,24 @@ export default function Provider({ children }) {
     })
   }, [])
 
-  const updateEthPrice = useCallback((ethPrice, oneDayPrice, ethPriceChange) => {
+  const updateEthPrice = useCallback((ethPrice, ethOneDayPrice, ethPriceChange) => {
     dispatch({
       type: UPDATE_ETH_PRICE,
       payload: {
         ethPrice,
-        oneDayPrice,
+        ethOneDayPrice,
         ethPriceChange,
+      },
+    })
+  }, [])
+
+  const updateFatePrice = useCallback((fatePrice, fateOneDayPrice, fatePriceChange) => {
+    dispatch({
+      type: UPDATE_FATE_PRICE,
+      payload: {
+        fatePrice,
+        fateOneDayPrice,
+        fatePriceChange,
       },
     })
   }, [])
@@ -181,6 +203,7 @@ export default function Provider({ children }) {
             updateTransactions,
             updateChart,
             updateEthPrice,
+            updateFatePrice,
             updateTopLps,
             updateAllPairsInUniswap,
             updateAllTokensInUniswap,
@@ -193,6 +216,7 @@ export default function Provider({ children }) {
           updateTopLps,
           updateChart,
           updateEthPrice,
+          updateFatePrice,
           updateAllPairsInUniswap,
           updateAllTokensInUniswap,
         ]
@@ -472,6 +496,39 @@ const getEthPrice = async () => {
   return [ethPrice, ethPriceOneDay, priceChangeETH]
 }
 
+/**
+ * Gets the current price  of FATE, 24 hour price, and % change between them
+ */
+const getFatePrice = async () => {
+  const utcCurrentTime = dayjs()
+  const utcOneDayBack = utcCurrentTime.subtract(1, 'day').startOf('minute').unix()
+
+  let fatePrice = 0
+  let fatePriceOneDay = 0
+  let priceChangeFATE = 0
+
+  try {
+    let oneDayBlock = await getBlockFromTimestamp(utcOneDayBack)
+    let result = await client.query({
+      query: FATE_PRICE(),
+      fetchPolicy: 'cache-first',
+    })
+    let resultOneDay = await client.query({
+      query: FATE_PRICE(oneDayBlock),
+      fetchPolicy: 'cache-first',
+    })
+    const currentPrice = result?.data?.pairs[0]?.token1Price
+    const oneDayBackPrice = resultOneDay?.data?.pairs[0]?.token1Price
+    priceChangeFATE = getPercentChange(currentPrice, oneDayBackPrice)
+    fatePrice = currentPrice
+    fatePriceOneDay = oneDayBackPrice
+  } catch (e) {
+    console.error(e)
+  }
+
+  return [fatePrice, fatePriceOneDay, priceChangeFATE]
+}
+
 const PAIRS_TO_FETCH = 500
 const TOKENS_TO_FETCH = 500
 
@@ -616,7 +673,7 @@ export function useGlobalTransactions() {
 export function useEthPrice() {
   const [state, { updateEthPrice }] = useGlobalDataContext()
   const ethPrice = state?.[ETH_PRICE_KEY]
-  const ethPriceOld = state?.['oneDayPrice']
+  const ethPriceOld = state?.['ethOneDayPrice']
   useEffect(() => {
     async function checkForEthPrice() {
       if (!ethPrice) {
@@ -628,6 +685,23 @@ export function useEthPrice() {
   }, [ethPrice, updateEthPrice])
 
   return [ethPrice, ethPriceOld]
+}
+
+export function useFatePrice() {
+  const [state, { updateFatePrice }] = useGlobalDataContext()
+  const fatePrice = state?.[FATE_PRICE_KEY]
+  const fatePriceOld = state?.['fateOneDayPrice']
+  useEffect(() => {
+    async function checkForFatePrice() {
+      if (!fatePrice) {
+        let [newPrice, oneDayPrice, priceChange] = await getFatePrice()
+        updateFatePrice(newPrice, oneDayPrice, priceChange)
+      }
+    }
+    checkForFatePrice()
+  }, [fatePrice, updateFatePrice])
+
+  return [fatePrice, fatePriceOld]
 }
 
 export function useAllPairsInUniswap() {

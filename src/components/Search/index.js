@@ -13,7 +13,6 @@ import { useMedia } from 'react-use'
 import { useAllPairsInUniswap, useAllTokensInUniswap } from '../../contexts/GlobalData'
 import { TOKEN_BLACKLIST, PAIR_BLACKLIST } from '../../constants'
 
-import { transparentize } from 'polished'
 import { client } from '../../apollo/client'
 import { PAIR_SEARCH, TOKEN_SEARCH } from '../../apollo/queries'
 import FormattedName from '../FormattedName'
@@ -182,13 +181,6 @@ const Heading = styled(Row)`
 
 const Gray = styled.span`
   color: #888d9b;
-`
-
-const Blue = styled.span`
-  color: #2172e5;
-  :hover {
-    cursor: pointer;
-  }
 `
 
 export const Search = ({ small = false }) => {

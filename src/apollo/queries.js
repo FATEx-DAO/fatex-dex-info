@@ -175,14 +175,14 @@ export const FATE_PRICE = (block) => {
     query fateUsdcPrice {
       pairs(where: { id: "${FATE_USDC_ID}" } block: {number: ${block}}) {
         id
-        token1Price
+        token0Price
       }
     }
   `
     : ` query fateUsdcPrice {
       pairs(where: { id: "${FATE_USDC_ID}" }) {
         id
-        token1Price
+        token0Price
       }
     }
   `

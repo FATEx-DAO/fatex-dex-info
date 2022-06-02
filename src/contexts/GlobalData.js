@@ -517,8 +517,8 @@ const getFatePrice = async () => {
       query: FATE_PRICE(oneDayBlock),
       fetchPolicy: 'cache-first',
     })
-    const currentPrice = result?.data?.pairs[0]?.token1Price
-    const oneDayBackPrice = resultOneDay?.data?.pairs[0]?.token1Price
+    const currentPrice = result?.data?.pairs[0]?.token0Price
+    const oneDayBackPrice = resultOneDay?.data?.pairs[0]?.token0Price
     priceChangeFATE = getPercentChange(currentPrice, oneDayBackPrice)
     fatePrice = currentPrice
     fatePriceOneDay = oneDayBackPrice

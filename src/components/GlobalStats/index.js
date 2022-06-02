@@ -48,7 +48,7 @@ export default function GlobalStats() {
               style={{ position: 'relative' }}
             >
               FATE Price: <Medium>{formattedFatePrice}</Medium>
-              {showPriceCard && <UniPrice />}
+              {/*{showPriceCard && <UniPrice />}*/}
             </TYPE.main>
           )}
 
